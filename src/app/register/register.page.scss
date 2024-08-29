@@ -1,0 +1,28 @@
+.register-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+    background: #212F3D; // El mismo fondo oscuro que en el login.
+    
+    margin-top: 60px; // Esto agregará espacio entre el header y el contenido
+  
+    h2 {
+      color: #BB8FCE; // Color morado claro para el título.
+      margin-bottom: 20px;
+    }
+  
+    ion-item {
+      --background: transparent;
+      --placeholder-color: rgba(255, 255, 255, 0.8);
+      --color: #BB8FCE; // Color de texto morado claro.
+      --highlight-color-focused: #C39BD3; // Neón para acento.
+      margin-bottom: 15px;
+    }
+  
+    ion-button {
+      margin-top: 20px;
+    }
+  }

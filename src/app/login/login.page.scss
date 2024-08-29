@@ -1,0 +1,27 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+    background: #212F3D; // Negro para contraste
+  
+    h2 {
+      color: #BB8FCE; // Morado claro
+    }
+  
+    ion-item {
+      --background: transparent;
+      --placeholder-color: rgba(255, 255, 255, 0.8);
+      --color: #BB8FCE;
+      --highlight-color-focused: #C39BD3; // Neón para acento
+    }
+  
+    .login-button {
+      margin-top: 20px;
+      --background: #7D3C98;
+      --background-activated: #4A235A;
+      --background-hover: #4A235A;
+    }
+  }
