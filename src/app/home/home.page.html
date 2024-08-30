@@ -1,20 +1,57 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Categorias</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+<ion-grid>
+  <ion-row>
+    <ion-col size="6">
+      <ion-card (click)="goToPage('categoria1')">
+        <img src="assets/images/category1.jpg" alt="Category 1 Image" />
+        <ion-card-header>
+          <ion-card-title>Category 1</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>This is a brief description for Category 1.</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col size="6">
+      <ion-card (click)="goToPage('categoria2')">
+        <img src="assets/images/category2.jpg" alt="Category 2 Image" />
+        <ion-card-header>
+          <ion-card-title>Category 2</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>This is a brief description for Category 2.</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6">
+      <ion-card (click)="goToPage('categoria3')">
+        <img src="assets/images/category3.jpg" alt="Category 3 Image" />
+        <ion-card-header>
+          <ion-card-title>Category 3</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>This is a brief description for Category 3.</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col size="6">
+      <ion-card (click)="goToPage('categoria4')">
+        <img src="assets/images/category4.jpg" alt="Category 4 Image" />
+        <ion-card-header>
+          <ion-card-title>Category 4</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>This is a brief description for Category 4.</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
