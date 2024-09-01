@@ -1,49 +1,48 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>register</ion-title>
+    <ion-title>login</ion-title>
   </ion-toolbar>
 </ion-header>
+
 
 <ion-content>
   <div class="register-container">
     <h2>Crear Cuenta</h2>
     <form (ngSubmit)="register()">
       <ion-item>
-        <ion-label position="floating">RUT</ion-label>
-        <ion-input type="text" required></ion-input>
+        <ion-input placeholder="RUT" type="text" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Nombres</ion-label>
-        <ion-input type="text" required></ion-input>
+        <ion-input placeholder="Nombres" type="text" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Apellidos</ion-label>
-        <ion-input type="text" required></ion-input>
+        <ion-input placeholder="Apellidos" type="text" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Fecha de Nacimiento</ion-label>
         <ion-datetime
-          display-format="DD/MM/YYYY"
-          picker-format="DD MM YYYY"
-          placeholder="Selecciona tu fecha de nacimiento"
-          presentation="date">
+        display-format="DD/MM/YYYY"
+        placeholder="Fecha de Nacimiento"
+        presentation="date"
+        [style.color]="'#dfefff'"
+        [cancelText]="'Cancelar'"
+        [doneText]="'Aceptar'">
+      
         </ion-datetime>
-      </ion-item>      
-      <ion-item>
-        <ion-label position="floating">Correo</ion-label>
-        <ion-input type="email" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Contraseña</ion-label>
-        <ion-input type="password" required></ion-input>
+        <ion-input placeholder="Correo" type="email" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Confirmar Contraseña</ion-label>
-        <ion-input type="password" required></ion-input>
+        <ion-input placeholder="Contraseña" type="password" required></ion-input>
       </ion-item>
-      <ion-button expand="block" type="submit">Registrarse</ion-button>
+      <ion-item>
+        <ion-input placeholder="Confirmar Contraseña" type="password" required></ion-input>
+      </ion-item>
+      <ion-button expand="block" type="submit" class="register-button">Registrarse</ion-button>
     </form>
-    <ion-button fill="clear" [routerLink]="['/login']">Volver al Login</ion-button>
+
+    <ion-button fill="clear" expand="block" [routerLink]="['/login']" class="back-to-login-button">
+      Volver al Login
+    </ion-button>
   </div>
 </ion-content>
-

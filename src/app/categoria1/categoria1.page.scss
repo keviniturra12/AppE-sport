@@ -1,0 +1,8 @@
+.gray-background {
+    background-color: #f0f0f0 !important; /* Gris claro */
+    height: 100% !important;  /* Asegúrate de que cubra todo */
+    min-height: 100vh !important; /* Cobertura total en caso de que el contenido sea menor que la vista */
+    display: flex; 
+    flex-direction: column;
+  }
+  

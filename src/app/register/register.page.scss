@@ -1,28 +1,43 @@
+
 .register-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    padding: 20px;
-    background: #212F3D; // El mismo fondo oscuro que en el login.
-    
-    margin-top: 60px; // Esto agregará espacio entre el header y el contenido
-  
-    h2 {
-      color: #BB8FCE; // Color morado claro para el título.
-      margin-bottom: 20px;
-    }
-  
-    ion-item {
-      --background: transparent;
-      --placeholder-color: rgba(255, 255, 255, 0.8);
-      --color: #BB8FCE; // Color de texto morado claro.
-      --highlight-color-focused: #C39BD3; // Neón para acento.
-      margin-bottom: 15px;
-    }
-  
-    ion-button {
-      margin-top: 20px;
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: #212F3D;
+
+  h2 {
+    color: #BB8FCE;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); // Sombra suave y sutil
+    margin-bottom: 20px;
   }
+  ion-item {
+    --background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    --placeholder-color: rgba(255, 255, 255, 0.7);
+    --color: #dfefff;
+    --highlight-color-focused: #BB8FCE;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(138, 114, 114, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+
+  ion-button {
+    margin-top: 20px;
+    --background: linear-gradient(135deg, #7D3C98, #4A235A);
+    --background-activated: #4A235A;
+    --background-hover: #BB8FCE;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  // Estilos específicos para ion-datetime (calendario)
+  ion-datetime {
+    --background: rgba(255, 255, 255, 0.2),; // Fondo del calendario más oscuro para integrarse mejor con el diseño
+  }
+}
