@@ -9,15 +9,19 @@ import { AlertController } from '@ionic/angular';
 })
 export class RegisterPage implements OnInit {
 
+  // Definimos la propiedad fecha_nacimiento como un objeto Date
+  fecha_nacimiento: Date = new Date();
+
+
   constructor(private router: Router, private alertController: AlertController) {}
 
   async register() {
-    // Aquí puedes recolectar los datos del formulario, por ahora usaremos datos ficticios.
+    // Aquí recolectamos los datos del formulario incluyendo la fecha de nacimiento.
     const userData = {
       rut: '12345678-9',
       nombres: 'Juan',
       apellidos: 'Pérez',
-      fechaNacimiento: '01/01/2000',
+      fechaNacimiento: this.fecha_nacimiento, // Utilizamos la fecha de nacimiento seleccionada
       correo: 'juan.perez@example.com',
       contrasena: 'password123'
     };
