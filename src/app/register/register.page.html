@@ -1,9 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>Registro</ion-title>
   </ion-toolbar>
 </ion-header>
-
 
 <ion-content>
   <div class="register-container">
@@ -19,15 +18,12 @@
         <ion-input placeholder="Apellidos" type="text" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-datetime
-        display-format="DD/MM/YYYY"
-        placeholder="Fecha de Nacimiento"
-        presentation="date"
-        [style.color]="'#dfefff'"
-        [cancelText]="'Cancelar'"
-        [doneText]="'Aceptar'">
-      
-        </ion-datetime>
+        <mat-form-field appearance="fill" class="custom-date-field">
+          <mat-label>Fecha de Nacimiento</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="fecha_nacimiento" name="fecha_nacimiento" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
       </ion-item>
       <ion-item>
         <ion-input placeholder="Correo" type="email" required></ion-input>

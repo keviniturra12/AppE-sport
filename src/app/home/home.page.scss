@@ -1,4 +1,55 @@
- .home-container {
+.home-container {
     --background: #212F3D; /* Fondo oscuro para el contenedor general */  
-}
+    padding: 10px;
+  }
+  
+  ion-card {
+    position: relative;
+    border-radius: 15px; /* Bordes redondeados */
+    overflow: hidden; /* Asegura que el contenido no se desborde */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Efecto de sombra para el relieve */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para el hover */
+    width: 100%; /* Asegura que las tarjetas ocupen todo el ancho de la columna */
+    padding-top: 100%; /* Esto asegura que la altura sea igual al ancho, creando un formato cuadrado */
+    background-color: transparent; /* Fondo transparente */
+  
+    &:hover {
+      transform: translateY(-10px); /* Levanta el card al hacer hover */
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7); /* Aumenta la sombra al hacer hover */
+    }
+  
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%; /* Asegura que la imagen ocupe todo el ancho del card */
+      height: 100%; /* Asegura que la imagen cubra toda la altura */
+      object-fit: cover; /* Mantiene la proporción de la imagen */
+      border-radius: 15px; /* Asegura que la imagen siga el borde redondeado del card */
+      z-index: 1; /* Asegura que la imagen esté detrás del texto */
+    }
+  
+    ion-card-header {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente para resaltar el texto */
+      padding: 10px 0;
+      backdrop-filter: blur(10px); /* Difumina el fondo */
+      z-index: 2; /* Asegura que el texto esté sobre la imagen */
+    }
+  
+    ion-card-title {
+      font-size: 1.4em;
+      font-weight: bold;
+      margin: 0;
+      color: #BB8FCE; /* Color morado claro para el título */
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Sombra suave para resaltar */
+    }
+  
+    ion-card-content {
+      display: none; /* Oculta el contenido textual adicional, manteniendo solo el título visible */
+    }
+  }
   

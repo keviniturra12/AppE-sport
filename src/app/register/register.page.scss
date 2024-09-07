@@ -1,4 +1,3 @@
-
 .register-container {
   display: flex;
   flex-direction: column;
@@ -11,9 +10,10 @@
   h2 {
     color: #BB8FCE;
     font-weight: bold;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); // Sombra suave y sutil
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
     margin-bottom: 20px;
   }
+
   ion-item {
     --background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
     --placeholder-color: rgba(255, 255, 255, 0.7);
@@ -24,6 +24,7 @@
     padding: 10px;
     box-shadow: 0 4px 6px rgba(138, 114, 114, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
   }
 
   ion-button {
@@ -36,8 +37,34 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   }
 
-  // Estilos específicos para ion-datetime (calendario)
-  ion-datetime {
-    --background: rgba(255, 255, 255, 0.2),; // Fondo del calendario más oscuro para integrarse mejor con el diseño
+  mat-form-field {
+    width: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    border-radius: 15px;
+    box-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    margin-bottom: 15px;
+
+    .mat-form-field-flex {
+      padding: 0;
+      background: none;
+      border-radius: 15px;
+    }
+
+    .mat-form-field-outline {
+      display: none;
+    }
+
+    .mat-input-element {
+      color: #dfefff;
+    }
+
+    .mat-form-field-label {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .mat-datepicker-toggle-active {
+      color: #BB8FCE;
+    }
   }
 }

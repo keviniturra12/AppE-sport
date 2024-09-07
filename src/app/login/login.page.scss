@@ -3,59 +3,71 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 100vh; /* Usamos vh para ocupar toda la altura de la ventana */
   padding: 20px;
-  background: #212F3D; // Fondo oscuro para el contenedor general
+  background: #212F3D; /* Fondo oscuro para el contenedor general */
+}
 
-  ion-img {
-    width: 150px; // Ajusta el tamaño de la imagen según lo necesario
-    height: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
+ion-img {
+  width: 150px; /* Ajusta el tamaño de la imagen según lo necesario */
+  height: auto;
+  margin: 0 auto; /* Centra la imagen horizontalmente */
+}
 
+h2 {
+  color: #BB8FCE;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Sombra suave y sutil */
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.5rem; /* Tamaño base para pantallas pequeñas */
+}
+
+@media (min-width: 768px) {
   h2 {
-    color: #BB8FCE;
-    font-weight: bold;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); // Sombra suave y sutil
-    margin-bottom: 20px;
-    text-align: center; // Asegura que el texto esté centrado
+    font-size: 2rem; /* Tamaño de fuente más grande para pantallas medianas */
   }
+}
 
-  ion-item {
-    --background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1)); // Gradiente suave
-    --placeholder-color: rgba(255, 255, 255, 0.7); // Color del placeholder más claro
-    --color: #FFFFFF; // Texto en blanco
-    --highlight-color-focused: #BB8FCE; // Morado claro para el enfoque
-    border-radius: 15px; // Bordes redondeados
-    margin-bottom: 15px; // Espaciado entre los campos
-    padding: 10px; // Relleno interior para un aspecto más espacioso
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Sombra suave
-    border: 1px solid rgba(255, 255, 255, 0.5); // Borde blanco
-    width: 100%; // Asegura que los elementos de entrada ocupen todo el ancho disponible
-    max-width: 400px; // Limita el ancho máximo de los elementos de entrada
+@media (min-width: 1024px) {
+  h2 {
+    font-size: 2.5rem; /* Tamaño de fuente más grande para pantallas grandes */
   }
+}
 
-  .login-button {
-    margin-top: 20px;
-    --background: linear-gradient(135deg, #7D3C98, #4A235A); // Gradiente morado
-    --background-activated: #4A235A;
-    --background-hover: #BB8FCE;
-    color: white;
-    border-radius: 10px;
-    width: 100%; // Asegura que el botón ocupe todo el ancho disponible
-    max-width: 400px; // Limita el ancho máximo del botón
-  }
+ion-item {
+  --background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1)); /* Gradiente suave */
+  --placeholder-color: rgba(255, 255, 255, 0.7); /* Color del placeholder más claro */
+  --color: #FFFFFF; /* Texto en blanco */
+  --highlight-color-focused: #BB8FCE; /* Morado claro para el enfoque */
+  border-radius: 15px; /* Bordes redondeados */
+  margin-bottom: 15px; /* Espaciado entre los campos */
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  border: 1px solid rgba(255, 255, 255, 0.5); /* Borde blanco */
+  width: 100%;
+  max-width: 400px; /* Limita el ancho máximo de los campos de entrada */
+}
 
-  .extra-options {
-    margin-top: 20px;
-    ion-button {
-      --color: #516eee; // Botones de enlace con color morado claro
-      font-weight: bold;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); // Sombra suave y sutil
-      width: 100%; // Asegura que los botones ocupen todo el ancho disponible
-      max-width: 400px; // Limita el ancho máximo de los botones
-    }
-  }
+.login-button {
+  margin-top: 20px;
+  --background: linear-gradient(135deg, #7D3C98, #4A235A); /* Gradiente morado */
+  --background-activated: #4A235A;
+  --background-hover: #BB8FCE;
+  color: white;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px; /* Limita el ancho máximo del botón */
+}
+
+.extra-options {
+  margin-top: 20px;
+}
+
+.extra-options ion-button {
+  --color: #516eee; /* Botones de enlace con color morado claro */
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Sombra suave y sutil */
+  width: 100%;
+  max-width: 400px; /* Limita el ancho máximo de los botones */
 }
