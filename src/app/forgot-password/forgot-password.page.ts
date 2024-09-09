@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router'; // Importamos el router para la redirección
 
 @Component({
   selector: 'app-forgot-password',
@@ -9,38 +10,48 @@ import { ToastController } from '@ionic/angular';
 })
 export class ForgotPasswordPage implements OnInit {
 
-  forgotPasswordForm!: FormGroup; // Usando el operador de aserción de no-null
+  forgotPasswordForm!: FormGroup;
+  passwordType: string = 'password'; // Tipo de input para la contraseña
+  passwordIcon: string = 'eye-off';  // Ícono por defecto (ocultar contraseña)
 
-  constructor(private formBuilder: FormBuilder, private toastController: ToastController) {}
+  constructor(
+    private formBuilder: FormBuilder, 
+    private toastController: ToastController,
+    private router: Router // Usamos el router para la redirección
+  ) {}
 
   ngOnInit() {
     this.forgotPasswordForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      newPassword: ['', [
-        Validators.required, 
-        Validators.minLength(8),
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')
-      ]],
-      confirmPassword: ['', [Validators.required]]
+      email: ['', [Validators.required, Validators.minLength(8)]], // Validar que el campo no esté vacío y tenga un mínimo de 8 caracteres
+      newPassword: ['', [Validators.required, Validators.minLength(8)]], // Validar que la nueva contraseña tenga al menos 8 caracteres
+      confirmPassword: ['', [Validators.required]] // Confirmar que la contraseña no esté vacía
     }, {
-      validator: this.matchingPasswords('newPassword', 'confirmPassword')
+      validator: this.matchingPasswords('newPassword', 'confirmPassword') // Validar que las contraseñas coincidan
     });
   }
 
   matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
     return (group: FormGroup) => {
-      let passwordInput = group.controls[passwordKey];
-      let confirmPasswordInput = group.controls[confirmPasswordKey];
+      const passwordInput = group.controls[passwordKey];
+      const confirmPasswordInput = group.controls[confirmPasswordKey];
       if (passwordInput.value !== confirmPasswordInput.value) {
-        return confirmPasswordInput.setErrors({notEquivalent: true});
+        confirmPasswordInput.setErrors({ notEquivalent: true });
       } else {
-        return confirmPasswordInput.setErrors(null);
+        confirmPasswordInput.setErrors(null);
       }
     };
   }
 
+  // Método para alternar la visibilidad de la contraseña
+  togglePasswordVisibility() {
+    this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
+  }
+
   async resetPassword() {
+    // Validamos solo que los campos estén completos y el formato sea correcto
     if (this.forgotPasswordForm.valid) {
+      // Mostrar el mensaje de éxito
       const toast = await this.toastController.create({
         message: 'Contraseña restablecida correctamente',
         duration: 2000,
@@ -48,6 +59,9 @@ export class ForgotPasswordPage implements OnInit {
         position: 'top'
       });
       toast.present();
+      
+      // Redirigir al login
+      this.router.navigate(['/login']);
     } else {
       const toast = await this.toastController.create({
         message: 'Por favor, complete todos los campos correctamente.',
