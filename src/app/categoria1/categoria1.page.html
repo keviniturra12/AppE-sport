@@ -1,57 +1,47 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="false" >
   <ion-toolbar>
-    <ion-title>MOBA</ion-title>
+    <ion-title >MOBA</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">MOBA (Multiplayer Online Battle Arena)</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
   <ion-grid>
     <ion-row>
+      <!-- MOBA Game 1 -->
       <ion-col size="12">
-        <ion-card>
-          <img src="assets/Img/lol.jpg" alt="MOBA Game 1">
+        <ion-card class="custom-card">
+          <img src="assets/Img/lol.jpg" alt="MOBA Game 1" />
           <ion-card-header>
-            <ion-card-title>League of Legends</ion-card-title>
+            <ion-card-title class="game-title">League of Legends</ion-card-title>
           </ion-card-header>
-          <ion-card-content>
-            Uno de los MOBAs más populares del mundo.
-          </ion-card-content>
         </ion-card>
       </ion-col>
 
+      <!-- MOBA Game 2 -->
       <ion-col size="12">
-        <ion-card>
-          <img src="assets/Img/dota.png" alt="MOBA Game 2">
+        <ion-card class="custom-card">
+          <img src="assets/Img/dota.jpg" alt="MOBA Game 2" />
           <ion-card-header>
-            <ion-card-title>Dota 2</ion-card-title>
+            <ion-card-title class="game-title">Dota 2</ion-card-title>
           </ion-card-header>
-          <ion-card-content>
-            Otro MOBA competitivo con una gran base de jugadores.
-          </ion-card-content>
         </ion-card>
       </ion-col>
 
+      <!-- MOBA Game 3 -->
       <ion-col size="12">
-        <ion-card>
-          <img src="assets/Img/heroes.png" alt="MOBA Game 3">
+        <ion-card class="custom-card">
+          <img src="assets/Img/heroes.webp" alt="MOBA Game 3" />
           <ion-card-header>
-            <ion-card-title>Heroes of the Storm</ion-card-title>
+            <ion-card-title class="game-title">Heroes of the Storm</ion-card-title>
           </ion-card-header>
-          <ion-card-content>
-            El MOBA de Blizzard con personajes de todas sus franquicias.
-          </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-button fill="clear" expand="block" [routerLink]="['/home']" class="back-to-login-button">
-    Volver a categorias
+  <!-- Botón de volver a categorías -->
+  <ion-button fill="clear" expand="block" [routerLink]="['/home']" class="back-to-categories-button">
+    Volver a categorías
   </ion-button>
 </ion-content>

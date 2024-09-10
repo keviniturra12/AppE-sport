@@ -9,9 +9,22 @@
 }
 
 ion-img {
-  width: 150px; /* Ajusta el tamaño de la imagen según lo necesario */
+  width: 150px;
   height: auto;
-  margin: 0 auto; /* Centra la imagen horizontalmente */
+  margin: 0 auto;
+  animation: bounce 3s infinite; /* Añadimos la animación de rebote */
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px); /* La imagen sube 20px */
+  }
+  60% {
+    transform: translateY(-10px); /* La imagen sube menos para un efecto más suave */
+  }
 }
 
 h2 {
@@ -70,4 +83,16 @@ ion-item {
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Sombra suave y sutil */
   width: 100%;
   max-width: 400px; /* Limita el ancho máximo de los botones */
+}
+
+.error-message p {
+  color: red; /* Color rojo para los mensajes de error */
+  font-size: 0.9rem; /* Ajusta el tamaño de la fuente si es necesario */
+  margin-top: 5px; /* Añade un pequeño margen superior para separar del input */
+  text-align: left; /* Alinea el texto a la izquierda */
+}
+
+.error-message {
+  margin-bottom: 10px; /* Espacio inferior para separar los mensajes de los siguientes elementos */
+  width: 100%; /* Asegura que el mensaje ocupe todo el ancho del formulario */
 }

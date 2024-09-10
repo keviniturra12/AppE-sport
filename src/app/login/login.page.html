@@ -15,8 +15,8 @@
             </ion-input>
           </ion-item>
           <div *ngIf="username?.invalid && username?.touched" class="error-message">
-            <p *ngIf="username?.errors?.['required']">El usuario es obligatorio</p>
-            <p *ngIf="username?.errors?.['minlength']">El usuario debe tener al menos 4 caracteres</p>
+            <p *ngIf="username?.errors?.['required']">* El usuario es obligatorio</p>
+            <p *ngIf="username?.errors?.['minlength']">* El usuario debe tener al menos 4 caracteres</p>
           </div>
 
           <ion-item>
@@ -29,8 +29,8 @@
             <ion-icon slot="end" [name]="passwordIcon" (click)="togglePasswordVisibility()"></ion-icon>
           </ion-item>
           <div *ngIf="password?.invalid && password?.touched" class="error-message">
-            <p *ngIf="password?.errors?.['required']">La contraseña es obligatoria</p>
-            <p *ngIf="password?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres</p>
+            <p *ngIf="password?.errors?.['required']">* La contraseña es obligatoria</p>
+            <p *ngIf="password?.errors?.['minlength']">* La contraseña debe tener al menos 6 caracteres</p>
           </div>
 
           <ion-button expand="block" type="submit" class="login-button">INGRESAR</ion-button>
