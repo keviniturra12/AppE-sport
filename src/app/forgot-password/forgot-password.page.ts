@@ -22,9 +22,9 @@ export class ForgotPasswordPage implements OnInit {
 
   ngOnInit() {
     this.forgotPasswordForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.minLength(8)]], // Validar que el campo no esté vacío y tenga un mínimo de 8 caracteres
-      newPassword: ['', [Validators.required, Validators.minLength(8)]], // Validar que la nueva contraseña tenga al menos 8 caracteres
-      confirmPassword: ['', [Validators.required]] // Confirmar que la contraseña no esté vacía
+      email: ['', [Validators.required, Validators.email]], // Valida que el campo sea un correo válido
+      newPassword: ['', [Validators.required, Validators.minLength(8)]], // Nueva contraseña debe tener al menos 8 caracteres
+      confirmPassword: ['', [Validators.required]] // Confirmar que no esté vacío
     }, {
       validator: this.matchingPasswords('newPassword', 'confirmPassword') // Validar que las contraseñas coincidan
     });
@@ -35,11 +35,24 @@ export class ForgotPasswordPage implements OnInit {
       const passwordInput = group.controls[passwordKey];
       const confirmPasswordInput = group.controls[confirmPasswordKey];
       if (passwordInput.value !== confirmPasswordInput.value) {
-        confirmPasswordInput.setErrors({ notEquivalent: true });
+        return confirmPasswordInput.setErrors({ notEquivalent: true });
       } else {
-        confirmPasswordInput.setErrors(null);
+        return confirmPasswordInput.setErrors(null);
       }
     };
+  }
+
+  // Métodos de conveniencia para obtener los controles del formulario
+  get email() {
+    return this.forgotPasswordForm.get('email');
+  }
+
+  get newPassword() {
+    return this.forgotPasswordForm.get('newPassword');
+  }
+
+  get confirmPassword() {
+    return this.forgotPasswordForm.get('confirmPassword');
   }
 
   // Método para alternar la visibilidad de la contraseña
