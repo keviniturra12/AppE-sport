@@ -1,9 +1,9 @@
 <ion-content>
   <ion-grid class="login-container">
-    <ion-row justify-content-center>
-      <ion-col size="12" size-md="6" size-lg="4">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="8" size-lg="6" class="ion-text-center">
         <ion-img src="assets/Img/Icono.png" alt="Logotipo"></ion-img>
-        <h2 class="ion-text-center">Bienvenido</h2>
+        <h2>Bienvenido</h2>
 
         <!-- Formulario reactivo -->
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -21,20 +21,22 @@
 
           <ion-item>
             <ion-input 
+              [type]="passwordType" 
               placeholder="Contraseña" 
               formControlName="password" 
-              type="password">
+              required>
             </ion-input>
+            <ion-icon slot="end" [name]="passwordIcon" (click)="togglePasswordVisibility()"></ion-icon>
           </ion-item>
           <div *ngIf="password?.invalid && password?.touched" class="error-message">
             <p *ngIf="password?.errors?.['required']">La contraseña es obligatoria</p>
             <p *ngIf="password?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres</p>
           </div>
 
-          <ion-button expand="block" type="submit" class="login-button">Iniciar Sesión</ion-button>
+          <ion-button expand="block" type="submit" class="login-button">INGRESAR</ion-button>
         </form>
 
-        <div class="extra-options ion-text-center">
+        <div class="extra-options">
           <ion-button fill="clear" [routerLink]="['/register']">Registrarse</ion-button>
           <ion-button fill="clear" [routerLink]="['/forgot-password']">Recuperar Contraseña</ion-button>
         </div>

@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class LoginPage {
   loginForm: FormGroup;
+  passwordType: string = 'password'; // Inicialización para tipo de input de la contraseña
+  passwordIcon: string = 'eye-off'; // Inicialización para el icono
 
   constructor(private fb: FormBuilder, private router: Router) {
     // Inicializa el formulario con validaciones
@@ -32,6 +34,12 @@ export class LoginPage {
     } else {
       alert('Por favor, completa correctamente el formulario');
     }
+  }
+
+  // Método para alternar la visibilidad de la contraseña
+  togglePasswordVisibility() {
+    this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
   }
 
   // Métodos de conveniencia para obtener los controles del formulario

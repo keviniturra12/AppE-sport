@@ -1,17 +1,24 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Categorias</ion-title>
+    <ion-title class="custom-title">Categorias</ion-title>
+
     <!-- Botón para ir al login en el encabezado -->
     <ion-buttons slot="end">
       <ion-button [routerLink]="['/login']">
         <ion-icon name="log-in-outline"></ion-icon>
-        Login
+        output
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="home-container">
+  <br>
+  <!-- Mensaje de bienvenida -->
+  <div class="welcome-message">
+    <h5>Bienvenido usuario: admin</h5>
+  </div>
+
   <ion-grid>
     <!-- Fila 1 con 2 categorías -->
     <ion-row>
@@ -66,7 +73,12 @@
         </ion-card>
       </ion-col>
     </ion-row>
-
-  
   </ion-grid>
 </ion-content>
+
+<!-- Footer -->
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Derechos Reservados 2024</ion-title>
+  </ion-toolbar>
+</ion-footer>
