@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { UserC } from '../common/interface/users';
+import { UserC, AuthInterface } from '../common/interface/users';
 import { FirestoreService } from '../common/service/firestore.service';
 import { ToastController } from '@ionic/angular';
+import { AuthService,  } from '../common/service/auth.service';
+import { LoginPage } from '../login/login.page';
 
 
 @Component({
@@ -14,9 +16,33 @@ import { ToastController } from '@ionic/angular';
 export class RegisterPage implements OnInit {
 
   newUser: UserC;
+  newAuth: AuthInterface;
   cargando: boolean = false;
 
-  constructor(private router: Router, private alertController: AlertController,private firestoreService:FirestoreService,private toastController:ToastController) {}
+  constructor(private router: Router, private authService: AuthService,private firestoreService:FirestoreService,private toastController:ToastController) {}
+
+
+  async registro() {
+    console.log('Iniciando registro...');
+  
+    try {
+      console.log('Llamando a save()...');
+      await this.save();
+      console.log('save() ejecutado con éxito.');
+    } catch (error) {
+      console.error('Error en save():', error);
+    }
+  
+    try {
+      console.log('Llamando a signUp()...');
+      await this.signUp();
+      console.log('signUp() ejecutado con éxito.');
+    } catch (error) {
+      console.error('Error en signUp():', error);
+    }
+  
+    console.log('Finalizando registro...');
+  }
 
   async save() {
     this.cargando = true;
@@ -41,19 +67,37 @@ export class RegisterPage implements OnInit {
     }
   }
 
+  async signUp(){
+    const credentials = {
+      email: this.newUser.email,
+      password: this.newUser.password,
+    };
+    console.log('Credenciales para registro:', credentials);
+    await this.authService.signUpWithEmailAndPassword(credentials);
+    this.router.navigateByUrl('/login');
+  }
+
   initUser(){
     this.newUser = {
       rut:null,
       nombres:null,
       apellidos:null,
-      correo: null,
-      contrasena: null,
+      email: null,
+      password: null,
       id: this.firestoreService.createIdDoc(),
     }
   }
+  initAuth(){
+    this.newAuth = {
+      email: null,
+      password: null,
+  }
+}
+  
 
   ngOnInit() {
     this.initUser();
+    this.initAuth();
   }
 
 }

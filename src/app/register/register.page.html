@@ -8,7 +8,7 @@
 
   <div class="register-container">
     <h2>Crear Cuenta</h2>
-    <form>
+    <form >
       <ion-item>
         <ion-input [(ngModel)]="newUser.rut" name="rut" placeholder="RUT" type="text" required></ion-input>
       </ion-item>
@@ -19,15 +19,15 @@
         <ion-input [(ngModel)]="newUser.apellidos" name="apellidos" placeholder="Apellidos" type="text" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input [(ngModel)]="newUser.correo" name="correo" placeholder="Correo" type="email" required></ion-input>
+        <ion-input [(ngModel)]="newUser.email" name="correo" placeholder="Correo" type="email" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input [(ngModel)]="newUser.contrasena" name="contrasena" placeholder="Contraseña" type="password" required></ion-input>
+        <ion-input [(ngModel)]="newUser.password" name="contrasena" placeholder="Contraseña" type="password" required></ion-input>
       </ion-item>
       <ion-item>
         <ion-input placeholder="Confirmar Contraseña" type="password" required></ion-input>
       </ion-item>
-      <ion-button (click)="save()" expand="block" type="submit" class="register-button">Registrarse</ion-button>
+      <ion-button (click)="registro()" expand="block" type="submit" class="register-button">Registrarse</ion-button>
     </form>
 
     <ion-button fill="clear" expand="block" [routerLink]="['/login']" class="back-to-login-button">
