@@ -83,7 +83,7 @@ export class RegisterPage implements OnInit {
     await this.authService.signUpWithEmailAndPassword(credentials);
     const snackBarRef = this.openSnackBar() // Abre el SnackBar
       snackBarRef.afterDismissed().subscribe(() => {
-        this.router.navigateByUrl('/home'); // Navega a la página de inicio después de cerrar el SnackBar
+        this.router.navigateByUrl('/login'); // Navega a la página de inicio después de cerrar el SnackBar
       });
   }
   
