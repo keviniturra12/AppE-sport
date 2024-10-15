@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { UserC } from '../common/interface/users';
 import { FirestoreService } from '../common/service/firestore.service';
+import { AuthService } from '../common/service/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,12 @@ export class HomePage {
 
   users: UserC[] = [];
 
-  constructor(private navCtrl: NavController, private firestoreService:FirestoreService) {}
+  constructor(private navCtrl: NavController, private firestoreService:FirestoreService, private authService: AuthService) {}
+
+
+  logOut(){
+    this.authService.logOut();
+  }
 
   goToPage(page: string) {
     this.navCtrl.navigateForward(`/${page}`);

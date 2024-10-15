@@ -10,6 +10,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatNativeDateModule,
     MatFormFieldModule,
+    MatSnackBarModule,
   ],
   declarations: [RegisterPage]
 })

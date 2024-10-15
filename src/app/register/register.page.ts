@@ -5,7 +5,7 @@ import { UserC, AuthInterface } from '../common/interface/users';
 import { FirestoreService } from '../common/service/firestore.service';
 import { ToastController } from '@ionic/angular';
 import { AuthService,  } from '../common/service/auth.service';
-import { LoginPage } from '../login/login.page';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class RegisterPage implements OnInit {
   newAuth: AuthInterface;
   cargando: boolean = false;
 
-  constructor(private router: Router, private authService: AuthService,private firestoreService:FirestoreService,private toastController:ToastController) {}
+  constructor(private router: Router, private authService: AuthService,private firestoreService:FirestoreService,private toastController:ToastController,private snackBar: MatSnackBar) {}
 
 
   async registro() {
@@ -59,12 +59,19 @@ export class RegisterPage implements OnInit {
       await toast.present();
   
       // Redirige al usuario a la página de login
-      this.router.navigate(['/login']);
     } catch (error) {
       console.error('Error al registrar usuario: ', error);
     } finally {
       this.cargando = false;
     }
+  }
+
+  openSnackBar(){
+    return this.snackBar.open('Log In Realizado','Close',{
+      duration: 2500,
+      verticalPosition: 'top',
+      horizontalPosition: 'end',
+    });
   }
 
   async signUp(){
@@ -74,8 +81,14 @@ export class RegisterPage implements OnInit {
     };
     console.log('Credenciales para registro:', credentials);
     await this.authService.signUpWithEmailAndPassword(credentials);
-    this.router.navigateByUrl('/login');
+    const snackBarRef = this.openSnackBar() // Abre el SnackBar
+      snackBarRef.afterDismissed().subscribe(() => {
+        this.router.navigateByUrl('/home'); // Navega a la página de inicio después de cerrar el SnackBar
+      });
   }
+  
+
+  
 
   initUser(){
     this.newUser = {
@@ -94,6 +107,7 @@ export class RegisterPage implements OnInit {
   }
 }
   
+
 
   ngOnInit() {
     this.initUser();

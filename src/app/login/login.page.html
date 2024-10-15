@@ -6,11 +6,12 @@
         <h2>Bienvenido</h2>
 
         <!-- Formulario reactivo -->
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="loginForm" (ngSubmit)="logIn()">
           <ion-item>
             <ion-input 
               placeholder="Usuario" 
               formControlName="username" 
+              [(ngModel)]="newUser.email"
               type="text">
             </ion-input>
           </ion-item>
@@ -23,7 +24,8 @@
             <ion-input 
               [type]="passwordType" 
               placeholder="Contraseña" 
-              formControlName="password" 
+              formControlName="password"
+              [(ngModel)]="newUser.password" 
               required>
             </ion-input>
             <ion-icon slot="end" [name]="passwordIcon" (click)="togglePasswordVisibility()"></ion-icon>

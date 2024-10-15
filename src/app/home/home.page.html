@@ -4,10 +4,10 @@
 
     <!-- Botón para ir al login en el encabezado -->
     <ion-buttons slot="end">
-      <ion-button [routerLink]="['/login']">
+      <ion-button (click)="logOut()" [routerLink]="['/login']">
         <ion-icon name="log-in-outline"></ion-icon>
         Log-out
-      </ion-button>
+      </ion-button >
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
