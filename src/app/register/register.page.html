@@ -1,35 +1,33 @@
 
 <ion-content>
+  @if (cargando) {
+    <div style="text-align: center;">
+      <ion-spinner name="bubbles"></ion-spinner>
+    </div>
+  }
+
   <div class="register-container">
     <h2>Crear Cuenta</h2>
-    <form (ngSubmit)="register()">
+    <form>
       <ion-item>
-        <ion-input placeholder="RUT" type="text" required></ion-input>
+        <ion-input [(ngModel)]="newUser.rut" name="rut" placeholder="RUT" type="text" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input placeholder="Nombres" type="text" required></ion-input>
+        <ion-input [(ngModel)]="newUser.nombres" name="nombres" placeholder="Nombres" type="text" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input placeholder="Apellidos" type="text" required></ion-input>
+        <ion-input [(ngModel)]="newUser.apellidos" name="apellidos" placeholder="Apellidos" type="text" required></ion-input>
       </ion-item>
       <ion-item>
-        <mat-form-field appearance="fill" class="custom-date-field">
-          <mat-label>Fecha de Nacimiento</mat-label>
-          <input matInput [matDatepicker]="picker" [(ngModel)]="fecha_nacimiento" name="fecha_nacimiento" required>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+        <ion-input [(ngModel)]="newUser.correo" name="correo" placeholder="Correo" type="email" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input placeholder="Correo" type="email" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input placeholder="Contraseña" type="password" required></ion-input>
+        <ion-input [(ngModel)]="newUser.contrasena" name="contrasena" placeholder="Contraseña" type="password" required></ion-input>
       </ion-item>
       <ion-item>
         <ion-input placeholder="Confirmar Contraseña" type="password" required></ion-input>
       </ion-item>
-      <ion-button expand="block" type="submit" class="register-button">Registrarse</ion-button>
+      <ion-button (click)="save()" expand="block" type="submit" class="register-button">Registrarse</ion-button>
     </form>
 
     <ion-button fill="clear" expand="block" [routerLink]="['/login']" class="back-to-login-button">

@@ -15,9 +15,11 @@
 <ion-content class="home-container">
   <br>
   <!-- Mensaje de bienvenida -->
-  <div class="welcome-message">
-    <h5>Bienvenido: admin</h5>
-  </div>
+   <div>
+      <ion-label *ngFor="let user of users; let i = index" class="welcome-message">
+        Bienvenido: {{ user.nombres }}
+      </ion-label>
+    </div>
 
   <ion-grid>
     <!-- Fila 1 con 2 categorías -->
@@ -74,6 +76,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
 </ion-content>
 
 <!-- Footer -->
@@ -81,4 +84,6 @@
   <ion-toolbar>
     <ion-title>Derechos Reservados 2024</ion-title>
   </ion-toolbar>
+  
+    
 </ion-footer>

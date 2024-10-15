@@ -10,6 +10,19 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { AngularFireModule } from '@angular/fire/compat'; // Usar AngularFireModule de compatibilidad
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { environment } from '../environments/environment'; // Importar environment
 
 @NgModule({
   declarations: [
@@ -26,9 +39,21 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatNativeDateModule,
     MatFormFieldModule,
+    MatButtonModule,
+    MatIconModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig), // Inicialización correcta
+    AngularFireAuthModule, // Módulo de autenticación
+    AngularFirestoreModule, // Módulo de Firestore
+    AngularFireStorageModule // Módulo de Storage si lo necesitas
     // otros módulos
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync(),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage())
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
