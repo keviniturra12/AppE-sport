@@ -7,6 +7,25 @@
   min-height: 100vh;
 }
 
+
+.logout-container {
+  display: flex;
+  justify-content: flex-end; /* Alinea el botón a la derecha */
+  padding: 10px; /* Añade un pequeño espacio alrededor */
+}
+
+.logout-button {
+--background: linear-gradient(135deg, #87CEEB, #4682B4); /* Gradiente azul claro a azul medio */
+--background-activated: #4682B4;
+--background-hover: #87CEEB;
+color: white;
+  border-radius: 10px;
+  width: 40%; /* El botón ocupará el 25% del ancho de la pantalla */
+  max-width: 150px; /* Asegura que no sea demasiado ancho */
+  font-weight: bold;
+}
+
+
 ion-grid {
   width: 100%; /* Asegura que el grid ocupe todo el ancho del contenedor */
   max-width: 1200px; /* Limita el tamaño máximo del grid para pantallas grandes */
@@ -76,33 +95,29 @@ ion-card {
   }
 }
 
-/* Animación del mensaje de bienvenida */
 .welcome-message {
   width: 100%;
   max-width: 400px;
-  margin: 0 auto 20px auto;
-  padding: 10px 20px;
-  background-color: #5a2b81;
+  margin: 20px auto;  /* Centrar horizontalmente y agregar espacio en la parte superior e inferior */
+  padding: 15px 30px;
+  background-color: #8E44AD;
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border: 2px solid #d3d3d3bb;
-  opacity: 0; /* Comienza invisible */
-  transform: translateY(-100px); /* Comienza desplazado hacia arriba */
-  animation: slideInDown 0.8s ease-out forwards; /* Animación personalizada */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border: 2px solid #BB8FCE;
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateY(-100px);
+  animation: slideInDown 0.8s ease-out forwards;
 }
 
-.welcome-message h5 {
-  color: #BB8FCE;
-  font-weight: bold;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-  font-size: 1.2rem;
-  margin: 0;
-}
+
 
 @media (min-width: 768px) {
-  .welcome-message h5 {
-    font-size: 1.5rem;
+  .welcome-message {
+    font-size: 2rem;  /* Aumentar el tamaño de la fuente para pantallas más grandes */
   }
 }
 

@@ -41,7 +41,9 @@ export class LoginPage {
     };
     console.log('Credenciales para Ingreso:', credentials);
     try {
-      await this.authService.logInWithEmailAndPassword(credentials);
+      const userCredential = await this.authService.logInWithEmailAndPassword(credentials);
+      localStorage.setItem('userEmail', userCredential.user.email);
+      console.log('Email guardado en localStorage:', userCredential.user.email);
       const snackBarRef = this.openSnackBar(); // Abre el SnackBar
       snackBarRef.afterDismissed().subscribe(() => {
         this.router.navigateByUrl('/home'); // Navega a la página de inicio después de cerrar el SnackBar
@@ -95,5 +97,6 @@ export class LoginPage {
   ngOnInit() {
     this.initUser();
     this.initAuth();
+    
   }
 }
