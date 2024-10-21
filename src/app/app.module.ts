@@ -23,6 +23,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { environment } from '../environments/environment'; // Importar environment
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { environment } from '../environments/environment'; // Importar environme
     AngularFireModule.initializeApp(environment.firebaseConfig), // Inicialización correcta
     AngularFireAuthModule, // Módulo de autenticación
     AngularFirestoreModule, // Módulo de Firestore
-    AngularFireStorageModule // Módulo de Storage si lo necesitas
+    AngularFireStorageModule, // Módulo de Storage si lo necesitas
+    HttpClientModule
     // otros módulos
   ],
   providers: [

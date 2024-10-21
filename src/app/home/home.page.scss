@@ -104,7 +104,7 @@ ion-card {
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  border: 2px solid #BB8FCE;
+
   font-size: 1.5rem;
   color: #fff;
   font-weight: bold;
@@ -135,4 +135,23 @@ ion-card {
 
 ion-footer ion-title {
   text-align: center;
+}
+
+.custom-segment-button {
+  background-color: #63abf0; /* Color verde de fondo */
+  color: #fff; /* Texto blanco */
+  border-radius: 10px; /* Bordes redondeados */
+ 
+  font-size: 16px; /* Tamaño del texto */
+  font-weight: bold; /* Texto en negrita */
+  transition: background-color 0.3s ease; /* Suave transición de color */
+  /* Cambiar color cuando el botón está activo */
+
+  /* Efecto al hacer clic */
+  &:active {
+    transform: scale(0.98); /* Leve reducción al hacer clic */
+  }
+
+  /* Opcional: Remover el borde de enfoque también al estar enfocado */
+  
 }

@@ -50,6 +50,12 @@ const routes: Routes = [
     canActivate: [authGuard],
     loadChildren: () => import('./categoria4/categoria4.module').then(m => m.Categoria4PageModule)
   },
+  {
+    path: '**',
+    loadChildren: () => import('./error-carga/error-carga.module').then( m => m.ErrorCargaPageModule)
+  },
+
+  
 ];
 
 @NgModule({

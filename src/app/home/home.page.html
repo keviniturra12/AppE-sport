@@ -1,24 +1,22 @@
 <ion-content class="home-container">
   <br>
 
-<!-- Botón de Log-out -->
- 
-<div class="logout-container">
-  <ion-button class="logout-button" (click)="logOut()">
-    <ion-icon name="log-out-outline"></ion-icon>
-    LOG-OUT
-  </ion-button>
-</div>
+  <!-- Botón de Log-out -->
+  <div class="logout-container">
+    <ion-button class="logout-button" (click)="logOut()">
+      <ion-icon name="log-out-outline"></ion-icon>
+      LOG-OUT
+    </ion-button>
+  </div>
 
+  <!-- Mensaje de bienvenida centrado -->
+  <div *ngIf="user" style="display: flex; justify-content: center; width: 100%;">
+    <ion-label class="welcome-message">
+      Bienvenido: {{ user.nombres }}
+    </ion-label>
+  </div>
 
- <!-- Mensaje de bienvenida centrado -->
- <div *ngIf="user" style="display: flex; justify-content: center; width: 100%;">
-  <ion-label class="welcome-message">
-    Bienvenido: {{ user.nombres }}
-  </ion-label>
-</div>
-
-
+  <!-- Grilla con categorías -->
   <ion-grid>
     <!-- Fila 1 con 2 categorías -->
     <ion-row>
@@ -75,6 +73,18 @@
     </ion-row>
   </ion-grid>
 
+  <!-- Segmento para seleccionar opciones -->
+  <ion-segment [(ngModel)]="selectedSegment" class="custom-segment">
+  <ion-segment-button value="pokemon" class="custom-segment-button">
+    <ion-label>Ver mi pokemon</ion-label>
+  </ion-segment-button>
+</ion-segment>
+
+  <!-- Mostrar componente Pokémon si se selecciona "pokemon" -->
+  <ng-container *ngIf="selectedSegment === 'pokemon'">
+    <app-pokemon></app-pokemon>
+  </ng-container>
+
 </ion-content>
 
 <!-- Footer -->
@@ -82,6 +92,4 @@
   <ion-toolbar>
     <ion-title>Derechos Reservados 2024</ion-title>
   </ion-toolbar>
-  
-    
 </ion-footer>

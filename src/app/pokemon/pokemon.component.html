@@ -1,0 +1,27 @@
+<div style="display: flex; justify-content: center; width: 100%;">
+  <button ion-button class="getRandomPokemon" (click)="getRandomPokemon()">Obtener Pokémon Aleatorio</button>
+</div>
+<div class="pokemon-container">
+  <div class="pokemon-card">
+    <!-- Contenido de la tarjeta Pokémon -->
+    <div class="pokemon-id">#{{ pokemon.id }}</div>
+    <div class="pokemon-status"></div>
+    <div class="pokemon-image">
+      <img [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }}">
+    </div>
+    <div class="pokemon-name">{{ pokemon.name }}</div>
+    <div class="pokemon-details">
+      <div class="detail">
+        Weight: <span class="value">{{ pokemon.weight }} kg</span>
+      </div>
+      <div class="detail">
+        Height: <span class="value">{{ pokemon.height }} m</span>
+      </div>
+    </div>
+    <div class="pokemon-type">
+      Type: {{ pokemon.types[0].type.name }} / {{ pokemon.types[1]?.type.name }}
+    </div>
+    <br>
+  </div>
+</div>
+
