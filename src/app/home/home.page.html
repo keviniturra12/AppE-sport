@@ -73,17 +73,17 @@
     </ion-row>
   </ion-grid>
 
-  <!-- Segmento para seleccionar opciones -->
   <ion-segment [(ngModel)]="selectedSegment" class="custom-segment">
-  <ion-segment-button value="pokemon" class="custom-segment-button">
-    <ion-label>Ver mi pokemon</ion-label>
-  </ion-segment-button>
-</ion-segment>
-
+    <ion-segment-button value="pokemon" class="custom-segment-button" (click)="onPokemonButtonClick()">
+      <ion-label>Ver mi pokemon</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  
   <!-- Mostrar componente Pokémon si se selecciona "pokemon" -->
   <ng-container *ngIf="selectedSegment === 'pokemon'">
-    <app-pokemon></app-pokemon>
+    <app-pokemon [pokemon]="currentPokemon"></app-pokemon>
   </ng-container>
+  
 
 </ion-content>
 

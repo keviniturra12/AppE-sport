@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '../servicios/api.service';
 
 @Component({
@@ -8,13 +8,15 @@ import { ApiService } from '../servicios/api.service';
 })
 export class PokemonComponent implements OnInit {
 
-  pokemon: any;
+  @Input() pokemon: any; // Decorador para recibir datos del componente padre
   loading: boolean = false;
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.getRandomPokemon();
+    if (!this.pokemon) {
+      this.getRandomPokemon(); // Si no recibe un Pokémon, obtener uno aleatorio
+    }
   }
 
   getRandomPokemon(): void {
