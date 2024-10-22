@@ -1,54 +1,32 @@
-ion-content.error-content {
-    --background: #212F3D;/* Establece el fondo de ion-content usando variables CSS */
-    background-color: #1e1e2d; /* Fallback para asegurar el fondo */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  
-  
-  .error-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .error-image {
-    width: 400px;
-    margin-bottom: 20px;
-  }
-  
-  .error-title {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #8E44AD; /* Color morado para el título */
-  }
-  
-  .error-message {
-    font-size: 16px;
-    color: #fff; /* Texto blanco */
-    margin-bottom: 20px;
-    padding: 0 20px;
-  }
-  
-  .error-button {
-    background-color: #63abf0; /* Color verde de fondo */
-  color: #fff; /* Texto blanco */
-  border-radius: 10px; /* Bordes redondeados */
- 
-  font-size: 16px; /* Tamaño del texto */
-  font-weight: bold; /* Texto en negrita */
-  transition: background-color 0.3s ease; /* Suave transición de color */
-  /* Cambiar color cuando el botón está activo */
+.error-content {
+  --background: url('/assets/Img/404.jpg') no-repeat center center / cover;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Para que el contenido comience desde la parte superior */
+  height: 100%;
+}
 
-  /* Efecto al hacer clic */
-  &:active {
-    transform: scale(0.98); /* Leve reducción al hacer clic */
-  }
+.error-overlay {
+  background-color: rgba(0, 0, 0, 0.3); /* Fondo semitransparente */
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  margin-top: 250px; /* Ajusta el valor según sea necesario */
+}
 
-  /* Opcional: Remover el borde de enfoque también al estar enfocado */
-  }
-  
+.error-title {
+  color: white;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.error-message {
+  color: white;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.error-button {
+  --background: #3880ff;
+  width: 100%;
+}
