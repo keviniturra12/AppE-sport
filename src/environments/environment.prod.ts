@@ -6,5 +6,7 @@ export const environment = {
     projectId: "appe-sport",
     storageBucket: "appe-sport.appspot.com",
     messagingSenderId: "839564876569",
-    appId: "1:839564876569:web:a6737db6ddfe8c48a34388"}
+    appId: "1:839564876569:web:a6737db6ddfe8c48a34388"},
 };
+
+

@@ -46,12 +46,14 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFireAuthModule, // Módulo de autenticación
     AngularFirestoreModule, // Módulo de Firestore
     AngularFireStorageModule, // Módulo de Storage si lo necesitas
+    
     HttpClientModule
     // otros módulos
   ],
   providers: [
     provideAnimationsAsync(),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage())
