@@ -21,7 +21,7 @@ describe('ApiService', () => {
     httpTestingController.verify();
   });
 
-  it('debería crearse el servicio', () => {
+  it('should create', () => {
     expect(service).toBeTruthy();
   });
 

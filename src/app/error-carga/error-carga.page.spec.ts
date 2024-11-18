@@ -17,7 +17,7 @@ describe('Página ErrorCargaPage', () => {
     fixture.detectChanges();
   });
 
-  it('debería crear la página', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 

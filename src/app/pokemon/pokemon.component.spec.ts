@@ -39,7 +39,8 @@ describe('PokemonComponent', () => {
     fixture.detectChanges();
   });
 
-  it('debería crear el componente', () => {
+  // Prueba que viene por defecto
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
