@@ -12,4 +12,8 @@ export class ErrorCargaPage implements OnInit {
   ngOnInit() {
   }
 
+  retry() {
+    console.log('Reintentando la carga...');
+    // Aquí puedes colocar la lógica de reintento
+  }
 }

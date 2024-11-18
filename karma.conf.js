@@ -1,6 +1,3 @@
-// Karma configuration file, see link for more information
-// https://karma-runner.github.io/1.0/config/configuration-file.html
-
 module.exports = function (config) {
   config.set({
     basePath: '',
@@ -14,15 +11,12 @@ module.exports = function (config) {
     ],
     client: {
       jasmine: {
-        // you can add configuration options for Jasmine here
-        // the possible options are listed at https://jasmine.github.io/api/edge/Configuration.html
-        // for example, you can disable the random execution with `random: false`
-        // or set a specific seed with `seed: 4321`
+        // Opciones para Jasmine
       },
-      clearContext: false // leave Jasmine Spec Runner output visible in browser
+      clearContext: false // Deja visible el resultado de Jasmine en el navegador
     },
     jasmineHtmlReporter: {
-      suppressAll: true // removes the duplicated traces
+      suppressAll: true // Elimina los rastros duplicados
     },
     coverageReporter: {
       dir: require('path').join(__dirname, './coverage/app'),
@@ -32,6 +26,9 @@ module.exports = function (config) {
         { type: 'text-summary' }
       ]
     },
+    files: [
+      'src/**/*.spec.ts' // Incluye todos los archivos .spec.ts en el directorio src
+    ],
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
