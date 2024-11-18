@@ -21,38 +21,21 @@ export class ForgotPasswordPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    // Configuración inicial del formulario
     this.forgotPasswordForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]], // Valida que el campo sea un correo válido
       newPassword: ['', [Validators.required, Validators.minLength(8)]], // Nueva contraseña debe tener al menos 8 caracteres
       confirmPassword: ['', [Validators.required]] // Confirmar que no esté vacío
     }, {
-      validator: this.matchingPasswords('newPassword', 'confirmPassword') // Validar que las contraseñas coincidan
+      validator: this.passwordMatchValidator // Validar que las contraseñas coincidan
     });
   }
 
-  matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
-    return (group: FormGroup) => {
-      const passwordInput = group.controls[passwordKey];
-      const confirmPasswordInput = group.controls[confirmPasswordKey];
-      if (passwordInput.value !== confirmPasswordInput.value) {
-        return confirmPasswordInput.setErrors({ notEquivalent: true });
-      } else {
-        return confirmPasswordInput.setErrors(null);
-      }
-    };
-  }
-
-  // Métodos de conveniencia para obtener los controles del formulario
-  get email() {
-    return this.forgotPasswordForm.get('email');
-  }
-
-  get newPassword() {
-    return this.forgotPasswordForm.get('newPassword');
-  }
-
-  get confirmPassword() {
-    return this.forgotPasswordForm.get('confirmPassword');
+  // Validador personalizado para comprobar si las contraseñas coinciden
+  passwordMatchValidator(group: FormGroup): any {
+    const password = group.get('newPassword')?.value;
+    const confirmPassword = group.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { notEquivalent: true };
   }
 
   // Método para alternar la visibilidad de la contraseña
@@ -62,18 +45,18 @@ export class ForgotPasswordPage implements OnInit {
   }
 
   async resetPassword() {
-    // Validamos solo que los campos estén completos y el formato sea correcto
     if (this.forgotPasswordForm.valid) {
-      // Mostrar el mensaje de éxito
+      // Registrar valores del formulario en consola
+      console.log('Formulario válido:', this.forgotPasswordForm.value);
+  
       const toast = await this.toastController.create({
         message: 'Contraseña restablecida correctamente',
         duration: 2000,
         color: 'success',
         position: 'top'
       });
-      toast.present();
-      
-      // Redirigir al login
+      await toast.present();
+  
       this.router.navigate(['/login']);
     } else {
       const toast = await this.toastController.create({
@@ -82,7 +65,8 @@ export class ForgotPasswordPage implements OnInit {
         color: 'danger',
         position: 'top'
       });
-      toast.present();
+      await toast.present();
     }
   }
+  
 }
