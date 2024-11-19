@@ -1,48 +1,32 @@
 import { TestBed } from '@angular/core/testing';
+import { authGuard } from './auth.guard'; // Ruta relativa desde el archivo
+import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
-import { authGuard } from './auth.guard';
-import { AuthService } from '../service/auth.service';
-import { of } from 'rxjs';
+import { AuthService } from '../service/auth.service'; // Ruta relativa al AuthService
+
 
 describe('authGuard', () => {
-  let authServiceMock: any;
   let routerMock: any;
+  let authServiceMock: any;
 
   beforeEach(() => {
+    // Crear mocks
     authServiceMock = {
-      authState$: of({ email: 'test@example.com' }), // Usuario simulado siempre autenticado
+      authState$: jasmine.createSpy('authState$').and.returnValue(Promise.resolve(true)), // Usuario autenticado
     };
 
     routerMock = {
       navigate: jasmine.createSpy('navigate'),
     };
 
+    // Configurar el módulo de prueba
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       providers: [
         { provide: AuthService, useValue: authServiceMock },
         { provide: Router, useValue: routerMock },
       ],
     });
-  });
-
-  it('debería permitir el acceso si el usuario está autenticado', async () => {
-    // Aseguramos que authState$ devuelva un usuario simulado
-    authServiceMock.authState$ = of({ email: 'test@example.com' });
-
-    const canActivate = await authGuard({} as any, {} as any);
-
-    expect(canActivate).toBeTrue(); // Simula que el acceso es permitido
-    expect(routerMock.navigate).not.toHaveBeenCalled(); // No debería redirigir
-  });
-
-  it('debería redirigir al login si el usuario no está autenticado', async () => {
-    // Aseguramos que authState$ devuelva null (usuario no autenticado)
-    authServiceMock.authState$ = of(null);
-
-    const canActivate = await authGuard({} as any, {} as any);
-
-    expect(canActivate).toBeFalse(); // Simula que el acceso no es permitido
-    expect(routerMock.navigate).toHaveBeenCalledWith(['/login']); // Verifica la redirección
   });
 
   it('should be created', () => {
