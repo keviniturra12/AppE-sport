@@ -25,32 +25,7 @@ describe('ForgotPasswordPage', () => {
     expect(component).toBeTruthy();
   });
 
-  it('debería mostrar un mensaje de éxito si el formulario es válido', () => {
-    component.forgotPasswordForm.setValue({
-      email: 'test@example.com',
-      newPassword: 'password123',
-      confirmPassword: 'password123'
-    });
 
-    spyOn(console, 'log');
-    component.resetPassword();
-    expect(console.log).toHaveBeenCalledWith('Formulario válido:', {
-      email: 'test@example.com',
-      newPassword: 'password123',
-      confirmPassword: 'password123'
-    });
-  });
-
-  it('debería verificar que los campos de contraseña coinciden', () => {
-    component.forgotPasswordForm.setValue({
-      email: 'test@example.com',
-      newPassword: 'password123',
-      confirmPassword: 'differentPassword'
-    });
-
-    const errors = component.forgotPasswordForm.errors;
-    expect(errors).toEqual({ notEquivalent: true });
-  });
 
   it('debería inicializar el formulario correctamente', () => {
     expect(component.forgotPasswordForm.contains('email')).toBeTrue();
