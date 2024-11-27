@@ -1,17 +1,26 @@
 <ion-content [fullscreen]="true" class="error-content">
   <div class="error-overlay">
-    <h1 class="error-title">Oops, página no encontrada</h1>
-    <p class="error-message">
-      Lo sentimos, la página que buscas no existe.
-    </p>
-
-    <ion-button expand="block" color="primary" routerLink="/home" class="error-button">
-      Volver al inicio
-    </ion-button>
-    <div class="error-message">
-  Ocurrió un error en la carga.
-</div>
-<button class="retry-button" (click)="retry()">Reintentar</button>
-
+    <!-- Tarjeta para estructurar el contenido principal -->
+    <mat-card class="error-card">
+      <mat-card-title class="error-title">Oops, página no encontrada</mat-card-title>
+      <mat-card-content>
+        <p class="error-message">
+          Lo sentimos, la página que buscas no existe.
+        </p>
+        <p class="error-message">
+          Ocurrió un error en la carga.
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <!-- Botón para volver al inicio -->
+        <button mat-raised-button color="primary" routerLink="/home">
+          Volver al inicio
+        </button>
+        <!-- Botón para reintentar -->
+        <button mat-raised-button color="primary" (click)="retry()">
+          Reintentar
+        </button>
+      </mat-card-actions>
+    </mat-card>
   </div>
 </ion-content>

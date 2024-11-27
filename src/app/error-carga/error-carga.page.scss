@@ -1,32 +1,43 @@
 .error-content {
-  --background: url('/assets/Img/404.jpg') no-repeat center center / cover;
+  --background: none;
+  background: url('/assets/Img/404.jpg') no-repeat center center fixed;
+  background-size: cover;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Para que el contenido comience desde la parte superior */
-  height: 100%;
+  align-items: center;
 }
 
 .error-overlay {
-  background-color: rgba(0, 0, 0, 0.2); /* Fondo semitransparente */
-  padding: 20px;
   text-align: center;
-  border-radius: 10px;
-  margin-top: 50px; /* Ajusta el valor según sea necesario */
-} 
+  padding: 20px;
+}
+
+.error-card {
+  background-color: rgba(255, 255, 255, 0.286); /* Fondo semitransparente */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  max-width: 400px;
+}
 
 .error-title {
-  color: white;
-  font-size: 2em;
-  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff; /* Rojo fuerte */
 }
 
 .error-message {
-  color: white;
-  font-size: 1.2em;
-  margin-bottom: 20px;
+  font-size: 16px;
+  color: #ffffff;
+  margin: 10px 0;
 }
 
-.error-button {
-  --background: #3880ff;
-  width: 100%;
+mat-card-actions {
+  display: flex;
+  justify-content: space-between;
 }
+
+button {
+  font-weight: bold;
+}
+  

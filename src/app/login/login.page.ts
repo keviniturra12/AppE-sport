@@ -1,3 +1,4 @@
+import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,6 +12,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
+  animations: [
+    trigger('fadeSlideIn', [
+      state('void', style({ opacity: 0, transform: 'translateY(-20px)' })), // Estado inicial
+      transition(':enter', [animate('500ms ease-out')]), // Animación al entrar
+    ]),
+  ],
 })
 export class LoginPage {
   loginForm: FormGroup;
@@ -24,17 +31,17 @@ export class LoginPage {
     private router: Router, 
     private toastController: ToastController,
     private authService: AuthService,
-    private firestoreService:FirestoreService, 
-    private snackBar: MatSnackBar) {
-    
-      // Inicializa el formulario con validaciones
+    private firestoreService: FirestoreService, 
+    private snackBar: MatSnackBar
+  ) {
+    // Inicializa el formulario con validaciones
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
-  async logIn(): Promise<void>{
+  async logIn(): Promise<void> {
     const credentials = {
       email: this.newUser.email,
       password: this.newUser.password,
@@ -53,8 +60,8 @@ export class LoginPage {
     }
   }
 
-  openSnackBar(){
-    return this.snackBar.open('Log In Realizado','Close',{
+  openSnackBar() {
+    return this.snackBar.open('Log In Realizado', 'Close', {
       duration: 2500,
       verticalPosition: 'top',
       horizontalPosition: 'end',
@@ -76,27 +83,26 @@ export class LoginPage {
     return this.loginForm.get('password');
   }
 
-  initUser(){
+  initUser() {
     this.newUser = {
-      rut:null,
-      nombres:null,
-      apellidos:null,
+      rut: null,
+      nombres: null,
+      apellidos: null,
       email: null,
       password: null,
       id: this.firestoreService.createIdDoc(),
-    }
+    };
   }
-  initAuth(){
+
+  initAuth() {
     this.newAuth = {
       email: null,
       password: null,
+    };
   }
-}
-  
 
   ngOnInit() {
     this.initUser();
     this.initAuth();
-    
   }
 }
