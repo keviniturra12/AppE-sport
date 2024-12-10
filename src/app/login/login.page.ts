@@ -2,11 +2,12 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular'; // Importamos ToastController
+import { ToastController } from '@ionic/angular';
 import { AuthInterface, UserC } from '../common/interface/users';
 import { AuthService } from '../common/service/auth.service';
 import { FirestoreService } from '../common/service/firestore.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Keyboard, KeyboardStyle } from '@capacitor/keyboard';
 
 @Component({
   selector: 'app-login',
@@ -14,27 +15,27 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./login.page.scss'],
   animations: [
     trigger('fadeSlideIn', [
-      state('void', style({ opacity: 0, transform: 'translateY(-20px)' })), // Estado inicial
-      transition(':enter', [animate('500ms ease-out')]), // Animación al entrar
+      state('void', style({ opacity: 0, transform: 'translateY(-20px)' })),
+      transition(':enter', [animate('500ms ease-out')]),
     ]),
   ],
 })
 export class LoginPage {
   loginForm: FormGroup;
-  passwordType: string = 'password'; // Inicialización para tipo de input de la contraseña
-  passwordIcon: string = 'eye-off'; // Inicialización para el icono
+  passwordType: string = 'password';
+  passwordIcon: string = 'eye-off';
   newUser: UserC;
   newAuth: AuthInterface;
+  private audio: HTMLAudioElement;
 
   constructor(
-    private fb: FormBuilder, 
-    private router: Router, 
+    private fb: FormBuilder,
+    private router: Router,
     private toastController: ToastController,
     private authService: AuthService,
-    private firestoreService: FirestoreService, 
+    private firestoreService: FirestoreService,
     private snackBar: MatSnackBar
   ) {
-    // Inicializa el formulario con validaciones
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -51,9 +52,9 @@ export class LoginPage {
       const userCredential = await this.authService.logInWithEmailAndPassword(credentials);
       localStorage.setItem('userEmail', userCredential.user.email);
       console.log('Email guardado en localStorage:', userCredential.user.email);
-      const snackBarRef = this.openSnackBar(); // Abre el SnackBar
+      const snackBarRef = this.openSnackBar();
       snackBarRef.afterDismissed().subscribe(() => {
-        this.router.navigateByUrl('/home'); // Navega a la página de inicio después de cerrar el SnackBar
+        this.router.navigateByUrl('/home');
       });
     } catch (error) {
       console.error('Error en el login:', error);
@@ -68,13 +69,11 @@ export class LoginPage {
     });
   }
 
-  // Método para alternar la visibilidad de la contraseña
   togglePasswordVisibility() {
     this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
     this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
   }
 
-  // Métodos de conveniencia para obtener los controles del formulario
   get username() {
     return this.loginForm.get('username');
   }
@@ -104,5 +103,21 @@ export class LoginPage {
   ngOnInit() {
     this.initUser();
     this.initAuth();
+
+    Keyboard.setStyle({ style: KeyboardStyle.Dark }); // Configuración del teclado
+
+    this.audio = new Audio('assets/audio/background.mp3'); // Configuración de la música
+    this.audio.loop = true;
+    this.audio.volume = 0.5;
+    this.audio.play();
+  }
+
+  ngOnDestroy() {
+    Keyboard.setStyle({ style: KeyboardStyle.Light }); // Restaurar estilo del teclado
+
+    if (this.audio) {
+      this.audio.pause();
+      this.audio.currentTime = 0;
+    }
   }
 }
