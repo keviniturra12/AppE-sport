@@ -1,74 +1,90 @@
-.home-container {
+ion-content {
   --background: #212F3D; /* Fondo oscuro para el contenedor general */
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
 }
 
+/* Área de contenido */
+.content-wrapper {
+  flex: 1; /* Permite que el contenido ocupe todo el espacio disponible */
+  overflow-y: auto; /* Habilita scroll si el contenido excede la altura */
+  padding-bottom: 60px; /* Espacio para el footer */
+}
 
+/* Estilo del botón de log-out */
 .logout-container {
   display: flex;
-  justify-content: flex-end; /* Alinea el botón a la derecha */
-  padding: 10px; /* Añade un pequeño espacio alrededor */
+  justify-content: space-between; /* Alinea los botones en los extremos */
+  padding: 10px;
 }
 
 .logout-button {
---background: linear-gradient(135deg, #87CEEB, #4682B4); /* Gradiente azul claro a azul medio */
---background-activated: #4682B4;
---background-hover: #87CEEB;
-color: white;
+  --background: linear-gradient(135deg, #87CEEB, #4682B4); /* Gradiente azul claro a medio */
+  --background-activated: #4682B4;
+  --background-hover: #87CEEB;
+  color: white;
   border-radius: 10px;
-  width: 40%; /* El botón ocupará el 25% del ancho de la pantalla */
-  max-width: 150px; /* Asegura que no sea demasiado ancho */
+  width: 40%; /* Ocupa el 40% del ancho de la pantalla */
+  max-width: 150px; /* Limita el ancho máximo */
   font-weight: bold;
 }
 
 
+.profile-button {
+  --background: linear-gradient(135deg, #7D3C98, #4A235A); /* Gradiente morado */
+  --background-activated: #4A235A;
+  --background-hover: #BB8FCE;
+  color: white;
+  border-radius: 10px;
+  width: 40%; /* Ocupa el 40% del ancho de la pantalla */
+  max-width: 150px; /* Limita el ancho máximo */
+  font-weight: bold;
+}
+
+
+/* Grilla de categorías */
 ion-grid {
-  width: 100%; /* Asegura que el grid ocupe todo el ancho del contenedor */
-  max-width: 1200px; /* Limita el tamaño máximo del grid para pantallas grandes */
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  max-width: 1200px; /* Limita el ancho máximo en pantallas grandes */
 }
 
 ion-row {
-  justify-content: center; /* Centra las columnas en el centro de la fila */
+  justify-content: center; /* Centra las columnas */
 }
 
 ion-col {
   display: flex;
-  justify-content: center; /* Centra los cards dentro de las columnas */
+  justify-content: center; /* Centra los elementos dentro de las columnas */
   align-items: center;
-  max-width: 100%; /* Asegura que las columnas no excedan el 100% del ancho */
+  max-width: 100%; /* Evita que las columnas se desborden */
 }
 
+/* Tarjetas de categorías */
 ion-card {
   position: relative;
   border-radius: 15px; /* Bordes redondeados */
   overflow: hidden; /* Asegura que el contenido no se desborde */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Efecto de sombra para el relieve */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para el hover */
-  width: 100%; /* Asegura que las tarjetas ocupen todo el ancho de la columna */
-  padding-top: 80%; /* Cambia el tamaño del formato cuadrado a un rectángulo más pequeño */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Sombra para el relieve */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación suave */
+  width: 100%; /* Ocupa todo el ancho de la columna */
+  padding-top: 80%; /* Mantiene el formato de las tarjetas */
   background-color: transparent; /* Fondo transparente */
-  opacity: 0; /* Comienza invisible */
-  transform: translateY(-100px); /* Comienza desplazado hacia arriba */
-  animation: slideInDown 0.8s ease-out forwards; /* Animación personalizada */
+  opacity: 0; /* Inicia invisible */
+  transform: translateY(-100px); /* Desplazamiento inicial */
+  animation: slideInDown 0.8s ease-out forwards; /* Animación de entrada */
 
   &:hover {
-    transform: translateY(-10px); /* Levanta el card al hacer hover */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7); /* Aumenta la sombra al hacer hover */
+    transform: translateY(-10px); /* Eleva la tarjeta al pasar el mouse */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7); /* Aumenta la sombra */
   }
 
   img {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%; /* Asegura que la imagen ocupe todo el ancho del card */
-    height: 100%; /* Asegura que la imagen cubra toda la altura */
-    object-fit: cover; /* Mantiene la proporción de la imagen */
-    border-radius: 15px; /* Asegura que la imagen siga el borde redondeado del card */
-    z-index: 1; /* Asegura que la imagen esté detrás del texto */
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    height: 100%; /* Ocupa toda la altura */
+    object-fit: cover; /* Ajusta la imagen sin distorsión */
+    border-radius: 15px; /* Respeta los bordes redondeados */
+    z-index: 1; /* Coloca la imagen detrás del texto */
   }
 
   ion-card-header {
@@ -76,56 +92,53 @@ ion-card {
     bottom: 0;
     width: 100%;
     text-align: center;
-    background: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente para resaltar el texto */
+    background: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
     padding: 10px 0;
     backdrop-filter: blur(10px); /* Difumina el fondo */
-    z-index: 2; /* Asegura que el texto esté sobre la imagen */
+    z-index: 2; /* Asegura que el texto esté encima */
   }
 
   ion-card-title {
     font-size: 1.3em;
     font-weight: bold;
     margin: 0;
-    color: #BB8FCE; /* Color morado claro para el título */
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Sombra suave para resaltar */
+    color: #BB8FCE; /* Color morado claro */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Sombra del texto */
   }
 
   ion-card-content {
-    display: none; /* Oculta el contenido textual adicional, manteniendo solo el título visible */
+    display: none; /* Oculta contenido adicional */
   }
 }
 
+/* Mensaje de bienvenida */
 .welcome-message {
   width: 100%;
   max-width: 400px;
-  margin: 20px auto;  /* Centrar horizontalmente y agregar espacio en la parte superior e inferior */
-  padding: 15px 30px;
-  background-color: #8E44AD;
-  border-radius: 12px;
+  margin: 10px auto; /* Reduce el margen para un mejor espaciado */
+  padding: 12px 25px; /* Ajuste de padding para hacerlo más compacto */
+  background-color: #8E44AD; /* Mantiene el fondo morado */
+  border-radius: 10px; /* Bordes más suaves */
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-
-  font-size: 1.5rem;
-  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra más sutil */
+  
+  font-size: 1.2rem; /* Tamaño del texto más pequeño para encajar mejor */
+  color: #fff; /* Texto blanco */
   font-weight: bold;
+
+  display: flex; /* Centra el texto verticalmente */
+  justify-content: center;
+  align-items: center;
   opacity: 0;
   transform: translateY(-100px);
   animation: slideInDown 0.8s ease-out forwards;
 }
 
-
-
-@media (min-width: 768px) {
-  .welcome-message {
-    font-size: 2rem;  /* Aumentar el tamaño de la fuente para pantallas más grandes */
-  }
-}
-
-/* Animación personalizada para cards */
+/* Animación personalizada para entrada de contenido */
 @keyframes slideInDown {
   0% {
     opacity: 0;
-    transform: translateY(-100px); /* Inicia 100px arriba */
+    transform: translateY(-100px); /* Comienza arriba */
   }
   100% {
     opacity: 1;
@@ -133,25 +146,60 @@ ion-card {
   }
 }
 
-ion-footer ion-title {
-  text-align: center;
+ion-footer {
+  height: 50px; /* Mantener el tamaño reducido del footer */
+  --background: #212F3D; /* Fondo oscuro para el contenedor general */
+  ion-toolbar.footer-toolbar {
+    --background: rgba(44, 62, 80, 0.8); /* Fondo gris translúcido */
+    backdrop-filter: blur(10px); /* Difuminado del fondo */
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Línea superior sutil */
+    height: 100%; /* Asegura que el toolbar ocupe toda la altura del footer */
+    display: flex; /* Activar flexbox */
+    justify-content: center; /* Centrar horizontalmente los elementos */
+    align-items: center; /* Centrar verticalmente los elementos */
+  }
 }
 
+.footer-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Asegura que los íconos y textos estén alineados verticalmente */
+
+  ion-icon {
+    font-size: 20px; /* Tamaño ajustado para adaptarse al footer más pequeño */
+    color: #BB8FCE; /* Color morado */
+    transition: color 0.3s ease;
+  }
+
+  &:hover ion-icon {
+    color: #87CEEB; /* Color azul claro al pasar el cursor */
+  }
+}
+
+/* Ajustar el espaciado entre íconos en el footer */
+ion-grid {
+  height: 100%; /* Asegura que el grid ocupe toda la altura del footer */
+}
+
+ion-row {
+  align-items: center; /* Centra los íconos verticalmente */
+  justify-content: space-around; /* Espaciado uniforme entre los íconos */
+}
+
+
+
+
+/* Segmento personalizado */
 .custom-segment-button {
-  background-color: #63abf0; /* Color verde de fondo */
+  background-color: #63abf0; /* Fondo azul */
   color: #fff; /* Texto blanco */
   border-radius: 10px; /* Bordes redondeados */
- 
   font-size: 16px; /* Tamaño del texto */
   font-weight: bold; /* Texto en negrita */
   transition: background-color 0.3s ease; /* Suave transición de color */
-  /* Cambiar color cuando el botón está activo */
 
-  /* Efecto al hacer clic */
   &:active {
-    transform: scale(0.98); /* Leve reducción al hacer clic */
+    transform: scale(0.98); /* Pequeña reducción al presionar */
   }
-
-  /* Opcional: Remover el borde de enfoque también al estar enfocado */
-  
 }

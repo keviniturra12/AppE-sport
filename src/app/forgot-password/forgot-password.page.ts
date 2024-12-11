@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Keyboard, KeyboardStyle } from '@capacitor/keyboard';
+import { MusicService } from '../common/service/music.service'; // Importar servicio de música
 
 @Component({
   selector: 'app-forgot-password',
@@ -9,12 +10,11 @@ import { Keyboard, KeyboardStyle } from '@capacitor/keyboard';
 })
 export class ForgotPasswordPage {
   forgotPasswordForm: FormGroup;
-  private audio: HTMLAudioElement;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private musicService: MusicService) {
     this.forgotPasswordForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      newPassword: ['', [Validators.required, Validators.minLength(8)]],
+      newPassword: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]]
     });
   }
@@ -39,19 +39,6 @@ export class ForgotPasswordPage {
 
   ngOnInit() {
     Keyboard.setStyle({ style: KeyboardStyle.Dark }); // Configuración del teclado
-
-    this.audio = new Audio('assets/audio/background.mp3'); // Configuración de la música
-    this.audio.loop = true;
-    this.audio.volume = 0.5;
-    this.audio.play();
-  }
-
-  ngOnDestroy() {
-    Keyboard.setStyle({ style: KeyboardStyle.Light }); // Restaurar estilo del teclado
-
-    if (this.audio) {
-      this.audio.pause();
-      this.audio.currentTime = 0;
-    }
+    this.musicService.playMusic(); // Asegura que la música siga sonando
   }
 }

@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content [fullscreen]="true">
   <ion-grid class="login-container">
     <ion-row class="ion-justify-content-center">
       <ion-col size="12" size-md="8" size-lg="6" class="ion-text-center">
@@ -9,7 +9,7 @@
         <form [formGroup]="loginForm" (ngSubmit)="logIn()">
           <ion-item>
             <ion-input 
-              placeholder="Usuario" 
+              placeholder="Usuario (Correo)" 
               formControlName="username" 
               [(ngModel)]="newUser.email"
               type="text">

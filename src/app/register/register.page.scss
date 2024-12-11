@@ -91,4 +91,9 @@
       color: #BB8FCE;
     }
   }
+  .error-message p {
+    color: red; /* Color rojo para los mensajes de error */
+    margin: 5px 0; /* Margen superior e inferior */
+    text-align: left;
+  }
 }

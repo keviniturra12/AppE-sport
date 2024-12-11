@@ -1,35 +1,70 @@
-
 <ion-content>
-  @if (cargando) {
-    <div style="text-align: center;">
-      <ion-spinner name="bubbles"></ion-spinner>
-    </div>
-  }
-
   <div class="register-container">
     <h2>Crear Cuenta</h2>
-    <form >
+    <form [formGroup]="registerForm" (ngSubmit)="registro()">
+      <!-- RUT -->
       <ion-item>
-        <ion-input [(ngModel)]="newUser.rut" name="rut" placeholder="RUT" type="text" required></ion-input>
+        <ion-label position="floating">RUT</ion-label>
+        <ion-input type="text" formControlName="rut"></ion-input>
       </ion-item>
+      <div *ngIf="rut?.invalid && rut?.touched" class="error-message">
+        <p *ngIf="rut?.errors?.['required']">* El RUT es obligatorio</p>
+      </div>
+
+      <!-- Nombres -->
       <ion-item>
-        <ion-input [(ngModel)]="newUser.nombres" name="nombres" placeholder="Nombres" type="text" required></ion-input>
+        <ion-label position="floating">Nombres</ion-label>
+        <ion-input type="text" formControlName="nombres"></ion-input>
       </ion-item>
+      <div *ngIf="nombres?.invalid && nombres?.touched" class="error-message">
+        <p *ngIf="nombres?.errors?.['required']">* Los nombres son obligatorios</p>
+      </div>
+
+      <!-- Apellidos -->
       <ion-item>
-        <ion-input [(ngModel)]="newUser.apellidos" name="apellidos" placeholder="Apellidos" type="text" required></ion-input>
+        <ion-label position="floating">Apellidos</ion-label>
+        <ion-input type="text" formControlName="apellidos"></ion-input>
       </ion-item>
+      <div *ngIf="apellidos?.invalid && apellidos?.touched" class="error-message">
+        <p *ngIf="apellidos?.errors?.['required']">* Los apellidos son obligatorios</p>
+      </div>
+
+      <!-- Correo -->
       <ion-item>
-        <ion-input [(ngModel)]="newUser.email" name="correo" placeholder="Correo" type="email" required></ion-input>
+        <ion-label position="floating">Correo Electrónico</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
       </ion-item>
+      <div *ngIf="email?.invalid && email?.touched" class="error-message">
+        <p *ngIf="email?.errors?.['required']">* El correo electrónico es obligatorio</p>
+        <p *ngIf="email?.errors?.['email']">* Debe ser un correo electrónico válido</p>
+      </div>
+
+      <!-- Contraseña -->
       <ion-item>
-        <ion-input [(ngModel)]="newUser.password" name="contrasena" placeholder="Contraseña" type="password" required></ion-input>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
+      <div *ngIf="password?.invalid && password?.touched" class="error-message">
+        <p *ngIf="password?.errors?.['required']">* La contraseña es obligatoria</p>
+        <p *ngIf="password?.errors?.['minlength']">* Debe tener al menos 8 caracteres</p>
+      </div>
+
+      <!-- Confirmar Contraseña -->
       <ion-item>
-        <ion-input placeholder="Confirmar Contraseña" type="password" required></ion-input>
+        <ion-label position="floating">Confirmar Contraseña</ion-label>
+        <ion-input type="password" formControlName="confirmPassword"></ion-input>
       </ion-item>
-      <ion-button (click)="registro()" expand="block" type="submit" class="register-button">Registrarse</ion-button>
+      <div *ngIf="confirmPassword?.invalid && confirmPassword?.touched" class="error-message">
+        <p *ngIf="confirmPassword?.errors?.['required']">* La confirmación de la contraseña es obligatoria</p>
+      </div>
+
+      <!-- Botón para Enviar -->
+      <ion-button expand="block" type="submit" [disabled]="registerForm.invalid" class="register-button">
+        Registrarse
+      </ion-button>
     </form>
 
+    <!-- Botón adicional para volver al login -->
     <ion-button fill="clear" expand="block" [routerLink]="['/login']" class="back-to-login-button">
       Volver al Login
     </ion-button>

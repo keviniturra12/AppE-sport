@@ -1,95 +1,105 @@
-<ion-content class="home-container">
-  <br>
+<ion-content [fullscreen]="true" class="home-container">
+  <div class="content-wrapper">
+    <!-- Botón de Log-out -->
+    <div class="logout-container">
+      <!-- Botón de Perfil -->
+      <ion-button class="profile-button" (click)="navigateTo('perfil')">
+        <ion-icon name="person-circle-outline"></ion-icon>
+        Perfil
+      </ion-button>
 
-  <!-- Botón de Log-out -->
-  <div class="logout-container">
-    <ion-button class="logout-button" (click)="logOut()">
-      <ion-icon name="log-out-outline"></ion-icon>
-      LOG-OUT
-    </ion-button>
+      <ion-button class="logout-button" (click)="logOut()">
+        <ion-icon name="log-out-outline"></ion-icon>
+        Salir
+      </ion-button>
+    </div>
+
+    <!-- Mensaje de bienvenida centrado -->
+    <div *ngIf="user" class="welcome-container">
+      <ion-label class="welcome-message">Bienvenido: {{ user.nombres }}</ion-label>
+    </div>
+
+    <!-- Grilla con categorías -->
+    <ion-grid>
+      <!-- Fila 1 con 2 categorías -->
+      <ion-row>
+        <ion-col size="6">
+          <ion-card (click)="goToPage('categoria1')">
+            <img src="assets/Img/categoria1.jpg" alt="Category 1 Image" />
+            <ion-card-header>
+              <ion-card-title>MOBA</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6">
+          <ion-card (click)="goToPage('categoria2')">
+            <img src="assets/Img/categoria2.webp" alt="Category 2 Image" />
+            <ion-card-header>
+              <ion-card-title>FPS</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <!-- Fila 2 con 2 categorías -->
+      <ion-row>
+        <ion-col size="6">
+          <ion-card (click)="goToPage('categoria3')">
+            <img src="assets/Img/categoria3.webp" alt="Category 3 Image" />
+            <ion-card-header>
+              <ion-card-title>Battle Royale</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6">
+          <ion-card (click)="goToPage('categoria4')">
+            <img src="assets/Img/categoria4.jpg" alt="Category 4 Image" />
+            <ion-card-header>
+              <ion-card-title>Fighting Games</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- Segmento para ver Pokémon -->
+    <ion-segment [(ngModel)]="selectedSegment" class="custom-segment">
+      <ion-segment-button value="pokemon" class="custom-segment-button" (click)="onPokemonButtonClick()">
+        <ion-label>Ver mi pokemon</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <!-- Mostrar componente Pokémon si se selecciona "pokemon" -->
+    <ng-container *ngIf="selectedSegment === 'pokemon'">
+      <app-pokemon [pokemon]="currentPokemon"></app-pokemon>
+    </ng-container>
   </div>
-
-  <!-- Mensaje de bienvenida centrado -->
-  <div *ngIf="user" style="display: flex; justify-content: center; width: 100%;">
-    <ion-label class="welcome-message">
-      Bienvenido: {{ user.nombres }}
-    </ion-label>
-  </div>
-
-  <!-- Grilla con categorías -->
-  <ion-grid>
-    <!-- Fila 1 con 2 categorías -->
-    <ion-row>
-      <ion-col size="6">
-        <ion-card (click)="goToPage('categoria1')">
-          <img src="assets/Img/categoria1.jpg" alt="Category 1 Image" />
-          <ion-card-header>
-            <ion-card-title>MOBA</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <p>Juegos de estrategia en equipo donde se destruye la base enemiga con personajes únicos.</p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-
-      <ion-col size="6">
-        <ion-card (click)="goToPage('categoria2')">
-          <img src="assets/Img/categoria2.webp" alt="Category 2 Image" />
-          <ion-card-header>
-            <ion-card-title>FPS</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <p>Juegos de disparos en primera persona, centrados en combate y precisión.</p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-
-    <!-- Fila 2 con 2 categorías -->
-    <ion-row>
-      <ion-col size="6">
-        <ion-card (click)="goToPage('categoria3')">
-          <img src="assets/Img/categoria3.webp" alt="Category 3 Image" />
-          <ion-card-header>
-            <ion-card-title>Battle Royale</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <p>Juegos de supervivencia donde el último jugador o equipo en pie gana.</p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-
-      <ion-col size="6">
-        <ion-card (click)="goToPage('categoria4')">
-          <img src="assets/Img/categoria4.jpg" alt="Category 4 Image" />
-          <ion-card-header>
-            <ion-card-title>Fighting Games</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <p>Juegos de combate uno contra uno, enfocados en combos y habilidades.</p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <ion-segment [(ngModel)]="selectedSegment" class="custom-segment">
-    <ion-segment-button value="pokemon" class="custom-segment-button" (click)="onPokemonButtonClick()">
-      <ion-label>Ver mi pokemon</ion-label>
-    </ion-segment-button>
-  </ion-segment>
-  
-  <!-- Mostrar componente Pokémon si se selecciona "pokemon" -->
-  <ng-container *ngIf="selectedSegment === 'pokemon'">
-    <app-pokemon [pokemon]="currentPokemon"></app-pokemon>
-  </ng-container>
-  
-
 </ion-content>
 
-<!-- Footer -->
 <ion-footer>
-  <ion-toolbar>
-    <ion-title>Derechos Reservados 2024</ion-title>
+  <ion-toolbar class="footer-toolbar">
+    <ion-grid>
+      <ion-row>
+        <!-- Botón Home -->
+        <ion-col>
+          <ion-button fill="clear" (click)="navigateTo('home')" class="footer-button">
+            <ion-icon name="home-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <!-- Botón Perfil -->
+        <ion-col>
+          <ion-button fill="clear" (click)="navigateTo('perfil')" class="footer-button">
+            <ion-icon name="person-circle-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <!-- Botón Cerrar Sesión -->
+        <ion-col>
+          <ion-button fill="clear" (click)="logOut()" class="footer-button">
+            <ion-icon name="log-out-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-footer>

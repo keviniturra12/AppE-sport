@@ -8,6 +8,7 @@ import { AuthService } from '../common/service/auth.service';
 import { FirestoreService } from '../common/service/firestore.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Keyboard, KeyboardStyle } from '@capacitor/keyboard';
+import { MusicService } from '../common/service/music.service'; // Importar servicio de música
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,6 @@ export class LoginPage {
   passwordIcon: string = 'eye-off';
   newUser: UserC;
   newAuth: AuthInterface;
-  private audio: HTMLAudioElement;
 
   constructor(
     private fb: FormBuilder,
@@ -34,7 +34,8 @@ export class LoginPage {
     private toastController: ToastController,
     private authService: AuthService,
     private firestoreService: FirestoreService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private musicService: MusicService // Inyectar el servicio de música
   ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(4)]],
@@ -54,6 +55,7 @@ export class LoginPage {
       console.log('Email guardado en localStorage:', userCredential.user.email);
       const snackBarRef = this.openSnackBar();
       snackBarRef.afterDismissed().subscribe(() => {
+        this.musicService.stopMusic(); // Detener la música al ingresar un usuario válido
         this.router.navigateByUrl('/home');
       });
     } catch (error) {
@@ -105,19 +107,6 @@ export class LoginPage {
     this.initAuth();
 
     Keyboard.setStyle({ style: KeyboardStyle.Dark }); // Configuración del teclado
-
-    this.audio = new Audio('assets/audio/background.mp3'); // Configuración de la música
-    this.audio.loop = true;
-    this.audio.volume = 0.5;
-    this.audio.play();
-  }
-
-  ngOnDestroy() {
-    Keyboard.setStyle({ style: KeyboardStyle.Light }); // Restaurar estilo del teclado
-
-    if (this.audio) {
-      this.audio.pause();
-      this.audio.currentTime = 0;
-    }
+    this.musicService.playMusic(); // Asegura que la música siga sonando
   }
 }

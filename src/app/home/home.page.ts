@@ -36,6 +36,11 @@ export class HomePage implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
+
+  navigateTo(page: string) {
+    this.router.navigate([`/${page}`]); // Navegar a la página seleccionada
+  }
+
   goToPage(page: string) {
     this.navCtrl.navigateForward(`/${page}`);
   }

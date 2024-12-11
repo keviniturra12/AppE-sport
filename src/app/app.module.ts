@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular'; // Importa IonicModule
+import { ReactiveFormsModule } from '@angular/forms'; // Importar ReactiveFormsModule
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
@@ -34,6 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule, // Agregar aquí
     BrowserAnimationsModule,
     IonicModule.forRoot(), // Asegúrate de incluir IonicModule aquí
     MatDatepickerModule,
