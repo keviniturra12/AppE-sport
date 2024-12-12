@@ -1,35 +1,44 @@
 .profile-container {
-    --background: #212F3D; /* Fondo oscuro */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Alineación superior */
-    align-items: center; /* Centrar contenido horizontalmente */
-    height: 100%; /* Ocupa toda la pantalla */
-    padding: 20px;
-  }
-  
-  /* Encabezado */
-  .profile-header {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .profile-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #BB8FCE; /* Morado claro */
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-  }
-  
-  /* Contenido del perfil */
-  .profile-content {
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 20px; /* Espacio entre datos del usuario y los botones */
-  }
+  --background: #212F3D; /* Fondo oscuro */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrar contenido verticalmente */
+  align-items: center; /* Centrar contenido horizontalmente */
+  height: 100%; /* Ocupa toda la pantalla */
+  padding: 20px;
+}
+
+.profile-header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.profile-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #BB8FCE; /* Morado claro */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Ajuste para el contenido del perfil */
+.profile-content {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px; /* Espacio entre datos del usuario y los botones */
+}
+
+/* Contenedor de Pokémon */
+.pokemon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
   
   /* Tarjetas de información */
   .info-card {

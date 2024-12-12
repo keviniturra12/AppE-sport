@@ -16,9 +16,7 @@ import { MusicService } from '../common/service/music.service'; // Importar serv
 })
 export class RegisterPage implements OnInit {
   newUser: UserC;
-  newAuth: AuthInterface;
-  cargando: boolean = false;
-  registerForm: FormGroup; // Nuevo formulario reactivo
+  registerForm: FormGroup; // Formulario reactivo
 
   constructor(
     private router: Router,
@@ -67,58 +65,83 @@ export class RegisterPage implements OnInit {
 
   async registro() {
     if (this.registerForm.valid) {
-      // Lógica original de registro
-      console.log('Formulario válido, registrando usuario...');
-      try {
-        await this.save();
-      } catch (error) {
-        console.error('Error en save():', error);
+      // Validar que las contraseñas coincidan
+      if (this.password?.value !== this.confirmPassword?.value) {
+        const toast = await this.toastController.create({
+          message: 'Las contraseñas no coinciden',
+          duration: 2000,
+          position: 'bottom',
+          color: 'danger',
+        });
+        await toast.present();
+        return;
       }
+
+      console.log('Formulario válido, registrando usuario...');
+      // Crear usuario en Firestore
       try {
-        await this.signUp();
+        await this.saveUserToFirestore();
       } catch (error) {
-        console.error('Error en signUp():', error);
+        console.error('Error al guardar el usuario en Firestore:', error);
+      }
+
+      // Registrar usuario en Firebase Authentication
+      try {
+        await this.createUserInFirebaseAuth();
+      } catch (error) {
+        console.error('Error al registrar el usuario en Firebase Authentication:', error);
       }
     } else {
       console.error('Formulario inválido');
     }
   }
 
-  async save() {
-    // Lógica original de save
-    this.cargando = true;
+  async saveUserToFirestore() {
+    this.newUser = {
+      rut: this.rut?.value,
+      nombres: this.nombres?.value,
+      apellidos: this.apellidos?.value,
+      email: this.email?.value,
+      password: this.password?.value,
+      id: this.firestoreService.createIdDoc(),
+    };
+
     try {
       await this.firestoreService.createDocumentID(this.newUser, 'usuarios', this.newUser.id);
       const toast = await this.toastController.create({
-        message: 'Usuario registrado exitosamente',
+        message: 'Usuario registrado exitosamente en Firestore',
         duration: 2000,
         position: 'bottom',
         color: 'success',
       });
       await toast.present();
     } catch (error) {
-      console.error('Error al registrar usuario: ', error);
-    } finally {
-      this.cargando = false;
+      console.error('Error al guardar el usuario en Firestore:', error);
+      throw error;
     }
   }
 
-  async signUp() {
-    // Lógica original de signUp
+  async createUserInFirebaseAuth() {
     const credentials = {
-      email: this.newUser.email,
-      password: this.newUser.password,
+      email: this.email?.value,
+      password: this.password?.value,
     };
-    console.log('Credenciales para registro:', credentials);
-    await this.authService.signUpWithEmailAndPassword(credentials);
-    const snackBarRef = this.openSnackBar();
-    snackBarRef.afterDismissed().subscribe(() => {
-      this.router.navigateByUrl('/login');
-    });
+
+    try {
+      console.log('Intentando registrar usuario en Firebase Authentication:', credentials);
+      await this.authService.signUpWithEmailAndPassword(credentials);
+      const snackBarRef = this.openSnackBar();
+      snackBarRef.afterDismissed().subscribe(() => {
+        this.router.navigateByUrl('/login');
+      });
+    } catch (error) {
+      console.error('Error al registrar usuario en Firebase Authentication:', error);
+      throw error;
+    }
   }
 
   openSnackBar() {
-    return this.snackBar.open('Log In Realizado', 'Close', {
+    return this.snackBar.open('Registro exitoso. Inicia sesión.', 'Close', {
       duration: 2500,
       verticalPosition: 'top',
       horizontalPosition: 'end',
@@ -126,31 +149,7 @@ export class RegisterPage implements OnInit {
   }
 
   ngOnInit() {
-    // Lógica original de inicialización
-    this.initUser();
-    this.initAuth();
-
     Keyboard.setStyle({ style: KeyboardStyle.Dark }); // Configuración del teclado
     this.musicService.playMusic(); // Asegura que la música siga sonando
-  }
-
-  initUser() {
-    // Lógica original para inicializar newUser
-    this.newUser = {
-      rut: null,
-      nombres: null,
-      apellidos: null,
-      email: null,
-      password: null,
-      id: this.firestoreService.createIdDoc(),
-    };
-  }
-
-  initAuth() {
-    // Lógica original para inicializar newAuth
-    this.newAuth = {
-      email: null,
-      password: null,
-    };
   }
 }

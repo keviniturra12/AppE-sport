@@ -46,6 +46,7 @@ export class LoginPage {
   }
 
   async logIn(): Promise<void> {
+    this.musicService.stopMusic();
     const credentials = {
       email: this.newUser.email,
       password: this.newUser.password,

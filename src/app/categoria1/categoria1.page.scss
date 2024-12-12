@@ -116,3 +116,25 @@ ion-row {
   align-items: center; /* Centra los íconos verticalmente */
   justify-content: space-around; /* Espaciado uniforme entre los íconos */
 }
+
+
+.custom-alert {
+  --background: #212F3D; /* Fondo oscuro */
+  --color: #fff; /* Texto blanco */
+  --ion-background-color: #212F3D; /* Fondo oscuro del modal */
+  --ion-text-color: #fff; /* Color del texto */
+}
+
+.alert-cancel-button {
+  --background: transparent; /* Fondo transparente */
+  --color: #BB8FCE; /* Color morado claro */
+  --border-radius: 8px;
+  --padding: 8px 16px;
+}
+
+.alert-confirm-button {
+  --background: linear-gradient(135deg, #7D3C98, #4A235A); /* Gradiente morado */
+  --color: white;
+  --border-radius: 8px;
+  --padding: 8px 16px;
+}

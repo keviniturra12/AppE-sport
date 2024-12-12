@@ -5,6 +5,8 @@ import { UserC } from '../common/interface/users';
 import { ApiService } from '../servicios/api.service';
 import { Router} from '@angular/router';
 import { Haptics, ImpactStyle } from '@capacitor/haptics';
+import { MusicMenuService } from '../common/service/music-menu.service'; // Importar servicio de música
+import { AlertController } from '@ionic/angular'; // Importar el controlador de alertas
 
 
 @Component({
@@ -24,11 +26,38 @@ export class ProfilePage implements OnInit {
     private authService: AuthService,
     private apiService: ApiService,
     private router: Router,
+    private musicmenuService: MusicMenuService,
+    private alertController: AlertController
   ) {}
 
   ngOnInit() {
     this.loadUserProfile();
     this.loadDefaultPokemon();
+  }
+
+
+  async confirmLogOut(): Promise<void> {
+    const alert = await this.alertController.create({
+      header: 'Confirmación',
+      message: '¿Estás seguro de que quieres cerrar sesión?',
+      cssClass: 'custom-alert',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'alert-cancel-button',
+        },
+        {
+          text: 'Salir',
+          cssClass: 'alert-confirm-button',
+          handler: () => {
+            this.logOut(); // Llamar al método de logout si se confirma
+          },
+        },
+      ],
+    });
+
+    await alert.present();
   }
 
   async loadUserProfile() {
@@ -101,6 +130,7 @@ getRandomPokemon(): void {
   }
 
   async logOut(): Promise<void> {
+    this.musicmenuService.stopMusic();
     console.log('Cerrando sesión, eliminando datos de localStorage');
     localStorage.removeItem('user');
     console.log('Datos de usuario eliminados de localStorage');
