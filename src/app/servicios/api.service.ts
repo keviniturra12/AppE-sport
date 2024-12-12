@@ -15,4 +15,10 @@ export class ApiService {
   getPokemon(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/pokemon/${id}`);
   }
+
+   // Método para obtener un Pokémon por su nombre
+   getPokemonByName(name: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/pokemon/${name}`);
+  }
+  
 }

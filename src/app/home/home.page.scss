@@ -1,15 +1,18 @@
 ion-content {
   --background: #212F3D; /* Fondo oscuro para el contenedor general */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: calc(100vh - 50px); /* Resta la altura del footer */
+  padding-bottom: 0; /* Elimina cualquier padding adicional */
 }
 
-/* Área de contenido */
 .content-wrapper {
   flex: 1; /* Permite que el contenido ocupe todo el espacio disponible */
   overflow-y: auto; /* Habilita scroll si el contenido excede la altura */
-  padding-bottom: 60px; /* Espacio para el footer */
 }
 
-/* Estilo del botón de log-out */
+/* Área de contenido */
 .logout-container {
   display: flex;
   justify-content: space-between; /* Alinea los botones en los extremos */
@@ -27,7 +30,6 @@ ion-content {
   font-weight: bold;
 }
 
-
 .profile-button {
   --background: linear-gradient(135deg, #7D3C98, #4A235A); /* Gradiente morado */
   --background-activated: #4A235A;
@@ -38,7 +40,6 @@ ion-content {
   max-width: 150px; /* Limita el ancho máximo */
   font-weight: bold;
 }
-
 
 /* Grilla de categorías */
 ion-grid {
@@ -121,7 +122,6 @@ ion-card {
   border-radius: 10px; /* Bordes más suaves */
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra más sutil */
-  
   font-size: 1.2rem; /* Tamaño del texto más pequeño para encajar mejor */
   color: #fff; /* Texto blanco */
   font-weight: bold;
@@ -147,16 +147,20 @@ ion-card {
 }
 
 ion-footer {
-  height: 50px; /* Mantener el tamaño reducido del footer */
-  --background: #212F3D; /* Fondo oscuro para el contenedor general */
+  height: 50px; /* Establece una altura uniforme para el footer */
+  position: fixed; /* Fija el footer al fondo de la pantalla */
+  bottom: 0;
+  width: 100%;
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+
   ion-toolbar.footer-toolbar {
     --background: rgba(44, 62, 80, 0.8); /* Fondo gris translúcido */
     backdrop-filter: blur(10px); /* Difuminado del fondo */
     border-top: 1px solid rgba(255, 255, 255, 0.2); /* Línea superior sutil */
     height: 100%; /* Asegura que el toolbar ocupe toda la altura del footer */
-    display: flex; /* Activar flexbox */
-    justify-content: center; /* Centrar horizontalmente los elementos */
-    align-items: center; /* Centrar verticalmente los elementos */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -164,10 +168,10 @@ ion-footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; /* Asegura que los íconos y textos estén alineados verticalmente */
+  flex-direction: column;
 
   ion-icon {
-    font-size: 20px; /* Tamaño ajustado para adaptarse al footer más pequeño */
+    font-size: 20px; /* Tamaño ajustado de los íconos */
     color: #BB8FCE; /* Color morado */
     transition: color 0.3s ease;
   }
@@ -177,7 +181,6 @@ ion-footer {
   }
 }
 
-/* Ajustar el espaciado entre íconos en el footer */
 ion-grid {
   height: 100%; /* Asegura que el grid ocupe toda la altura del footer */
 }
@@ -186,9 +189,6 @@ ion-row {
   align-items: center; /* Centra los íconos verticalmente */
   justify-content: space-around; /* Espaciado uniforme entre los íconos */
 }
-
-
-
 
 /* Segmento personalizado */
 .custom-segment-button {

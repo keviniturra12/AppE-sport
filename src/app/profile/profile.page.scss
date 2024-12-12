@@ -1,0 +1,241 @@
+.profile-container {
+    --background: #212F3D; /* Fondo oscuro */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alineación superior */
+    align-items: center; /* Centrar contenido horizontalmente */
+    height: 100%; /* Ocupa toda la pantalla */
+    padding: 20px;
+  }
+  
+  /* Encabezado */
+  .profile-header {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .profile-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #BB8FCE; /* Morado claro */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  }
+  
+  /* Contenido del perfil */
+  .profile-content {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px; /* Espacio entre datos del usuario y los botones */
+  }
+  
+  /* Tarjetas de información */
+  .info-card {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 15px;
+    border-radius: 12px;
+    background-color: rgba(44, 62, 80, 0.8); /* Fondo gris translúcido */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Sombra */
+    backdrop-filter: blur(10px); /* Difuminado */
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+    transform: translateY(-30px);
+  
+    ion-icon {
+      font-size: 1.5rem;
+      color: #87CEEB; /* Azul claro */
+      margin-right: 10px;
+    }
+  
+    p {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #fff;
+      margin: 0;
+    }
+  
+    /* Animación al cargar */
+    &:nth-child(1) {
+      animation: fadeInUp 0.4s ease-out forwards;
+      animation-delay: 0.2s;
+    }
+    &:nth-child(2) {
+      animation: fadeInUp 0.4s ease-out forwards;
+      animation-delay: 0.4s;
+    }
+    &:nth-child(3) {
+      animation: fadeInUp 0.4s ease-out forwards;
+      animation-delay: 0.6s;
+    }
+  }
+  
+  /* Animación personalizada */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .pokemon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .pokemon-card {
+    background-color: #1e1e2d;
+    border-radius: 15px;
+    padding: 15px;
+    width: 180px; /* Más estrecho */
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    color: white;
+    border: 1px solid #48e07d;
+    position: relative; /* Permite posicionamiento relativo para el ID */
+  
+    .pokemon-id {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #b0b0b0;
+      border-radius: 12px;
+      padding: 5px 10px;
+      font-size: 12px;
+      position: absolute;
+      top: 10px; /* Dentro del contenedor */
+      left: 10px; /* Esquina superior izquierda */
+      font-weight: bold;
+    }
+  
+    .pokemon-image img {
+      width: 100px; /* Ajustado para el nuevo tamaño */
+      height: 100px;
+    }
+  
+    .pokemon-name {
+      font-size: 18px; /* Más pequeño */
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-transform: capitalize;
+      color: #ffffff;
+    }
+  
+    .pokemon-details {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px; /* Reducido para ajustarlo */
+      font-size: 12px; /* Ajustado para el nuevo tamaño */
+  
+      .detail {
+        font-size: 12px;
+        color: #cfcfcf;
+      }
+  
+      .value {
+        font-weight: bold;
+        font-size: 14px; /* Más pequeño */
+        color: white;
+      }
+    }
+  
+    .pokemon-type {
+      font-size: 12px; /* Más pequeño */
+      font-weight: bold;
+      color: #48e07d;
+      text-transform: capitalize;
+    }
+  }
+  
+  .pokemon-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    margin-top: 10px; /* Margen superior para separación */
+  
+    ion-button {
+      font-weight: bold;
+      width: 40%;
+      max-width: 150px;
+    }
+  
+    .search-button {
+      --background: linear-gradient(135deg, #87CEEB, #4682B4); /* Gradiente azul */
+      color: white;
+    }
+  
+    .random-button {
+      --background: linear-gradient(135deg, #BB8FCE, #7D3C98); /* Gradiente morado */
+      color: white;
+    }
+  }
+  
+  .loading-spinner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ocupa toda la pantalla */
+    color: #87CEEB; /* Azul claro */
+    font-size: 1.2rem;
+  
+    p {
+      font-size: 1.5rem;
+      color: #BB8FCE; /* Color morado claro */
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    }
+  
+    ion-spinner {
+      margin-bottom: 15px;
+    }
+  }
+  
+
+  ion-footer {
+    height: 50px;
+  
+    ion-toolbar.footer-toolbar {
+      --background: rgba(44, 62, 80, 0.8); /* Fondo gris translúcido */
+      backdrop-filter: blur(10px); /* Difuminado del fondo */
+      border-top: 1px solid rgba(255, 255, 255, 0.2); /* Línea superior sutil */
+      height: 100%; /* Asegura que el toolbar ocupe toda la altura del footer */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  
+  .footer-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  
+    ion-icon {
+      font-size: 20px; /* Tamaño ajustado de los íconos */
+      color: #BB8FCE; /* Color morado */
+      transition: color 0.3s ease;
+    }
+  
+    &:hover ion-icon {
+      color: #87CEEB; /* Color azul claro al pasar el cursor */
+    }
+  }
+  
+  ion-grid {
+    height: 100%; /* Asegura que el grid ocupe toda la altura del footer */
+  }
+  
+  ion-row {
+    align-items: center; /* Centra los íconos verticalmente */
+    justify-content: space-around; /* Espaciado uniforme entre los íconos */
+  }

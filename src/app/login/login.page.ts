@@ -9,6 +9,8 @@ import { FirestoreService } from '../common/service/firestore.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Keyboard, KeyboardStyle } from '@capacitor/keyboard';
 import { MusicService } from '../common/service/music.service'; // Importar servicio de música
+import { Haptics, ImpactStyle } from '@capacitor/haptics';
+
 
 @Component({
   selector: 'app-login',
@@ -53,6 +55,10 @@ export class LoginPage {
       const userCredential = await this.authService.logInWithEmailAndPassword(credentials);
       localStorage.setItem('userEmail', userCredential.user.email);
       console.log('Email guardado en localStorage:', userCredential.user.email);
+  
+      // Generar vibración ligera al verificar el usuario correctamente
+      await Haptics.impact({ style: ImpactStyle.Medium });
+  
       const snackBarRef = this.openSnackBar();
       snackBarRef.afterDismissed().subscribe(() => {
         this.musicService.stopMusic(); // Detener la música al ingresar un usuario válido
@@ -62,7 +68,6 @@ export class LoginPage {
       console.error('Error en el login:', error);
     }
   }
-
   openSnackBar() {
     return this.snackBar.open('Log In Realizado', 'Close', {
       duration: 2500,

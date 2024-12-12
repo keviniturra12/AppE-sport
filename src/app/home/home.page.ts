@@ -100,31 +100,4 @@ export class HomePage implements OnInit {
     }
   }
 
-  // Función para manejar el clic en "Ver mi Pokémon"
-  onPokemonButtonClick() {
-    if (!this.isPokemonDisplayed) {
-      this.selectedSegment = 'pokemon'; // Mostrar el Pokémon la primera vez
-      this.getRandomPokemon(); // Obtener un Pokémon aleatorio
-      this.isPokemonDisplayed = true; // Cambiar la bandera para indicar que el Pokémon ya fue mostrado
-    } else {
-      this.savePokemon(); // Guardar el Pokémon si ya se ha mostrado
-      this.isPokemonDisplayed = false; // Reiniciar la bandera para la próxima vez
-    }
-  }
-
-  // Función para obtener un Pokémon aleatorio
-  getRandomPokemon() {
-    const pokemonList = ['Pikachu', 'Charmander', 'Bulbasaur', 'Squirtle', 'Jigglypuff']; // Lista de ejemplo
-    const randomIndex = Math.floor(Math.random() * pokemonList.length);
-    this.currentPokemon = pokemonList[randomIndex]; // Actualizar con un nuevo Pokémon
-    console.log('Pokémon aleatorio obtenido:', this.currentPokemon);
-  }
-
-  // Función para guardar el Pokémon actual
-  savePokemon() {
-    console.log('Guardando el Pokémon:', this.currentPokemon);
-    // Aquí puedes implementar la lógica de guardado (ej. en Firebase, LocalStorage, etc.)
-    // Ejemplo: guardarlo en localStorage
-    localStorage.setItem('savedPokemon', JSON.stringify(this.currentPokemon));
-  }
 }

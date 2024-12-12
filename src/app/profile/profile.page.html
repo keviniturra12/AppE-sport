@@ -1,0 +1,98 @@
+<ion-content [fullscreen]="true" class="profile-container">
+  <div class="profile-header">
+    <ion-label class="profile-title">Mi Perfil</ion-label>
+  </div>
+
+  <!-- Mostrar Spinner mientras se cargan los datos -->
+  <div *ngIf="isLoading" class="loading-spinner">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Cargando información...</p>
+  </div>
+
+  <!-- Contenido del perfil (cuando la carga se complete) -->
+  <div *ngIf="!isLoading" class="profile-content">
+    <div class="info-card">
+      <ion-icon name="person-outline"></ion-icon>
+      <p>{{ user?.nombres }}</p>
+    </div>
+    <div class="info-card">
+      <ion-icon name="person-outline"></ion-icon>
+      <p>{{ user?.apellidos }}</p>
+    </div>
+    <div class="info-card">
+      <ion-icon name="mail-outline"></ion-icon>
+      <p>{{ user?.email }}</p>
+    </div>
+  </div>
+
+  <!-- Botones para buscar Pokémon -->
+  <div class="pokemon-buttons">
+    <ion-button class="search-button" (click)="searchPokemon()">
+      <ion-icon slot="start" name="search-outline"></ion-icon>
+      Buscar por Nombre
+    </ion-button>
+
+    <ion-button class="random-button" (click)="getRandomPokemon()">
+      <ion-icon slot="start" name="dice-outline"></ion-icon>
+      Pokémon Aleatorio
+    </ion-button>
+  </div>
+
+  <!-- Mostrar Pokémon -->
+  <div class="pokemon-container">
+    <ng-container *ngIf="pokemon; else loadingTemplate">
+      <div class="pokemon-card">
+        <div class="pokemon-id">#{{ pokemon.id }}</div>
+        <div class="pokemon-image">
+          <img [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }}">
+        </div>
+        <div class="pokemon-name">{{ pokemon.name }}</div>
+        <div class="pokemon-details">
+          <div class="detail">Peso: <span class="value">{{ pokemon.weight }} kg</span></div>
+          <div class="detail">Altura: <span class="value">{{ pokemon.height }} m</span></div>
+        </div>
+        <div class="pokemon-type">
+          Tipo: {{ pokemon.types[0]?.type.name }} / {{ pokemon.types[1]?.type.name || 'N/A' }}
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Placeholder de carga -->
+    <ng-template #loadingTemplate>
+      <div class="loading-spinner">
+        <ion-spinner name="crescent"></ion-spinner>
+        <p>Cargando Pokémon...</p>
+      </div>
+    </ng-template>
+  </div>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar class="footer-toolbar">
+    <ion-grid>
+      <ion-row>
+        <!-- Botón Home -->
+        <ion-col>
+          <ion-button fill="clear" (click)="navigateTo('home')" class="footer-button">
+            <ion-icon name="home-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <!-- Botón Perfil -->
+        <ion-col>
+          <ion-button fill="clear" (click)="navigateTo('profile')" class="footer-button">
+            <ion-icon name="person-circle-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <!-- Botón Cerrar Sesión -->
+        <ion-col>
+          <ion-button fill="clear" (click)="logOut()" class="footer-button">
+            <ion-icon name="log-out-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

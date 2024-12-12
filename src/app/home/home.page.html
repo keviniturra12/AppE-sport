@@ -3,7 +3,7 @@
     <!-- Botón de Log-out -->
     <div class="logout-container">
       <!-- Botón de Perfil -->
-      <ion-button class="profile-button" (click)="navigateTo('perfil')">
+      <ion-button class="profile-button" (click)="navigateTo('profile')">
         <ion-icon name="person-circle-outline"></ion-icon>
         Perfil
       </ion-button>
@@ -61,45 +61,31 @@
       </ion-row>
     </ion-grid>
 
-    <!-- Segmento para ver Pokémon -->
-    <ion-segment [(ngModel)]="selectedSegment" class="custom-segment">
-      <ion-segment-button value="pokemon" class="custom-segment-button" (click)="onPokemonButtonClick()">
-        <ion-label>Ver mi pokemon</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-
-    <!-- Mostrar componente Pokémon si se selecciona "pokemon" -->
-    <ng-container *ngIf="selectedSegment === 'pokemon'">
-      <app-pokemon [pokemon]="currentPokemon"></app-pokemon>
-    </ng-container>
-  </div>
-</ion-content>
-
-<ion-footer>
-  <ion-toolbar class="footer-toolbar">
-    <ion-grid>
-      <ion-row>
-        <!-- Botón Home -->
-        <ion-col>
-          <ion-button fill="clear" (click)="navigateTo('home')" class="footer-button">
-            <ion-icon name="home-outline"></ion-icon>
-          </ion-button>
-        </ion-col>
-
-        <!-- Botón Perfil -->
-        <ion-col>
-          <ion-button fill="clear" (click)="navigateTo('perfil')" class="footer-button">
-            <ion-icon name="person-circle-outline"></ion-icon>
-          </ion-button>
-        </ion-col>
-
-        <!-- Botón Cerrar Sesión -->
-        <ion-col>
-          <ion-button fill="clear" (click)="logOut()" class="footer-button">
-            <ion-icon name="log-out-outline"></ion-icon>
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
-</ion-footer>
+    <ion-footer>
+      <ion-toolbar class="footer-toolbar">
+        <ion-grid>
+          <ion-row>
+            <!-- Botón Home -->
+            <ion-col>
+              <ion-button fill="clear" (click)="navigateTo('home')" class="footer-button">
+                <ion-icon name="home-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+    
+            <!-- Botón Perfil -->
+            <ion-col>
+              <ion-button fill="clear" (click)="navigateTo('profile')" class="footer-button">
+                <ion-icon name="person-circle-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+    
+            <!-- Botón Cerrar Sesión -->
+            <ion-col>
+              <ion-button fill="clear" (click)="logOut()" class="footer-button">
+                <ion-icon name="log-out-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-toolbar>
+    </ion-footer>
